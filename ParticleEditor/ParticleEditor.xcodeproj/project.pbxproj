@@ -15,6 +15,7 @@
 		C48EDC782EEA37B0008DC7F6 /* ParticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */; };
 		C48EDC7A2EEA37B8008DC7F6 /* ParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC792EEA37B8008DC7F6 /* ParticleSystem.swift */; };
 		C48EDC7C2EEA4036008DC7F6 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC7B2EEA4036008DC7F6 /* MetalView.swift */; };
+		C48EDC7E2EEB4116008DC7F6 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC7D2EEB4116008DC7F6 /* Renderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleController.swift; sourceTree = "<group>"; };
 		C48EDC792EEA37B8008DC7F6 /* ParticleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSystem.swift; sourceTree = "<group>"; };
 		C48EDC7B2EEA4036008DC7F6 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		C48EDC7D2EEB4116008DC7F6 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -136,6 +138,7 @@
 		C48EDC672EEA35C4008DC7F6 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				C48EDC7D2EEB4116008DC7F6 /* Renderer.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				C48EDC7A2EEA37B8008DC7F6 /* ParticleSystem.swift in Sources */,
 				C48EDC782EEA37B0008DC7F6 /* ParticleController.swift in Sources */,
 				C48EDC3F2EEA3563008DC7F6 /* ParticleEditorApp.swift in Sources */,
+				C48EDC7E2EEB4116008DC7F6 /* Renderer.swift in Sources */,
 				C48EDC6E2EEA36A8008DC7F6 /* ParticleShaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

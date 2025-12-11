@@ -19,7 +19,11 @@ struct MetalView: View {
 struct MetalViewRepresentable: UIViewRepresentable {
     
     class Coordinator {
+        var renderer: Renderer?
         
+        func attach(to mtkView: MTKView) {
+            renderer = Renderer(mtkView: mtkView)
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -27,7 +31,9 @@ struct MetalViewRepresentable: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> MTKView {
-        MTKView()
+        let mtkView = MTKView()
+        context.coordinator.attach(to: mtkView)
+        return mtkView
     }
 
     func updateUIView(_ uiView: MTKView, context: Context) {
@@ -40,15 +46,21 @@ struct MetalViewRepresentable: UIViewRepresentable {
 struct MetalViewRepresentable: NSViewRepresentable {
     
     class Coordinator {
+        var renderer: Renderer?
         
+        func attach(to mtkView: MTKView) {
+            renderer = Renderer(mtkView: mtkView)
+        }
     }
     
     func makeCoordinator() -> Coordinator {
-        
+        Coordinator()
     }
     
     func makeNSView(context: Context) -> MTKView {
-        MTKView()
+        let mtkView = MTKView()
+        context.coordinator.attach(to: mtkView)
+        return mtkView
     }
 
     func updateNSView(_ nsView: MTKView, context: Context) {
