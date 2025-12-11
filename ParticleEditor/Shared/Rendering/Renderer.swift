@@ -11,6 +11,7 @@ final class Renderer: NSObject, MTKViewDelegate {
     
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
+    private var pipelineState: MTLRenderPipelineState!
     
     init(mtkView: MTKView) {
         guard let device = MTLCreateSystemDefaultDevice() else {
@@ -24,6 +25,22 @@ final class Renderer: NSObject, MTKViewDelegate {
             fatalError("Failed to create Metal command queue.")
         }
         self.commandQueue = commandQueue
+        
+        // Load default library, which contains Shaders.metal
+        let library = device.makeDefaultLibrary()
+        
+        // Create a pipeline descriptor
+        let pipelineDescriptor = MTLRenderPipelineDescriptor()
+        pipelineDescriptor.vertexFunction = library?.makeFunction(name: "vertex_main")
+        pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "fragment_main")
+        pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
+        
+        // Compile pipeline
+        do {
+            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+        } catch {
+            fatalError("Failed to create pipeline state: \(error)")
+        }
         
         super.init()
         
