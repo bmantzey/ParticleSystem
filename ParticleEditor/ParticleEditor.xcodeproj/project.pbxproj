@@ -6,6 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C48EDC3F2EEA3563008DC7F6 /* ParticleEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC3E2EEA3563008DC7F6 /* ParticleEditorApp.swift */; };
+		C48EDC412EEA3563008DC7F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC402EEA3563008DC7F6 /* ContentView.swift */; };
+		C48EDC6E2EEA36A8008DC7F6 /* ParticleShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC6D2EEA36A8008DC7F6 /* ParticleShaders.metal */; };
+		C48EDC742EEA3744008DC7F6 /* Particle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC732EEA3744008DC7F6 /* Particle.swift */; };
+		C48EDC762EEA379E008DC7F6 /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC752EEA379E008DC7F6 /* Emitter.swift */; };
+		C48EDC782EEA37B0008DC7F6 /* ParticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */; };
+		C48EDC7A2EEA37B8008DC7F6 /* ParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC792EEA37B8008DC7F6 /* ParticleSystem.swift */; };
+		C48EDC7C2EEA4036008DC7F6 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC7B2EEA4036008DC7F6 /* MetalView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C48EDC492EEA3564008DC7F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,8 +36,16 @@
 
 /* Begin PBXFileReference section */
 		C48EDC3B2EEA3563008DC7F6 /* ParticleEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParticleEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48EDC3E2EEA3563008DC7F6 /* ParticleEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEditorApp.swift; sourceTree = "<group>"; };
+		C48EDC402EEA3563008DC7F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C48EDC482EEA3564008DC7F6 /* ParticleEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParticleEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48EDC522EEA3564008DC7F6 /* ParticleEditorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParticleEditorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48EDC6D2EEA36A8008DC7F6 /* ParticleShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ParticleShaders.metal; sourceTree = "<group>"; };
+		C48EDC732EEA3744008DC7F6 /* Particle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Particle.swift; sourceTree = "<group>"; };
+		C48EDC752EEA379E008DC7F6 /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
+		C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleController.swift; sourceTree = "<group>"; };
+		C48EDC792EEA37B8008DC7F6 /* ParticleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleSystem.swift; sourceTree = "<group>"; };
+		C48EDC7B2EEA4036008DC7F6 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +94,8 @@
 		C48EDC322EEA3563008DC7F6 = {
 			isa = PBXGroup;
 			children = (
+				C48EDC6B2EEA35F1008DC7F6 /* Shaders */,
+				C48EDC652EEA35B5008DC7F6 /* Shared */,
 				C48EDC3D2EEA3563008DC7F6 /* ParticleEditor */,
 				C48EDC4B2EEA3564008DC7F6 /* ParticleEditorTests */,
 				C48EDC552EEA3564008DC7F6 /* ParticleEditorUITests */,
@@ -90,6 +111,52 @@
 				C48EDC522EEA3564008DC7F6 /* ParticleEditorUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C48EDC652EEA35B5008DC7F6 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C48EDC682EEA35CB008DC7F6 /* Engine */,
+				C48EDC672EEA35C4008DC7F6 /* Rendering */,
+				C48EDC662EEA35BE008DC7F6 /* App */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		C48EDC662EEA35BE008DC7F6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C48EDC402EEA3563008DC7F6 /* ContentView.swift */,
+				C48EDC3E2EEA3563008DC7F6 /* ParticleEditorApp.swift */,
+				C48EDC7B2EEA4036008DC7F6 /* MetalView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C48EDC672EEA35C4008DC7F6 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+		C48EDC682EEA35CB008DC7F6 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				C48EDC732EEA3744008DC7F6 /* Particle.swift */,
+				C48EDC752EEA379E008DC7F6 /* Emitter.swift */,
+				C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */,
+				C48EDC792EEA37B8008DC7F6 /* ParticleSystem.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		C48EDC6B2EEA35F1008DC7F6 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C48EDC6D2EEA36A8008DC7F6 /* ParticleShaders.metal */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +303,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48EDC412EEA3563008DC7F6 /* ContentView.swift in Sources */,
+				C48EDC762EEA379E008DC7F6 /* Emitter.swift in Sources */,
+				C48EDC7C2EEA4036008DC7F6 /* MetalView.swift in Sources */,
+				C48EDC742EEA3744008DC7F6 /* Particle.swift in Sources */,
+				C48EDC7A2EEA37B8008DC7F6 /* ParticleSystem.swift in Sources */,
+				C48EDC782EEA37B0008DC7F6 /* ParticleController.swift in Sources */,
+				C48EDC3F2EEA3563008DC7F6 /* ParticleEditorApp.swift in Sources */,
+				C48EDC6E2EEA36A8008DC7F6 /* ParticleShaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
