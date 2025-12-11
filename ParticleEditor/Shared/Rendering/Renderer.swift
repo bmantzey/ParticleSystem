@@ -48,7 +48,7 @@ final class Renderer: NSObject, MTKViewDelegate {
     }
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        
+        // TODO:
     }
     
     func draw(in view: MTKView) {
@@ -57,7 +57,11 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return }
         
+        encoder.setRenderPipelineState(pipelineState)
+        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
+        
         encoder.endEncoding()
+        
         commandBuffer.present(drawable)
         commandBuffer.commit()
     }
