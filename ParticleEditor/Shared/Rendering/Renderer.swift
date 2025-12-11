@@ -35,7 +35,14 @@ final class Renderer: NSObject, MTKViewDelegate {
     }
     
     func draw(in view: MTKView) {
+        guard let drawable = view.currentDrawable else { return }
+        guard let descriptor = view.currentRenderPassDescriptor else { return }
+        guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
+        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return }
         
+        encoder.endEncoding()
+        commandBuffer.present(drawable)
+        commandBuffer.commit()
     }
     
     
