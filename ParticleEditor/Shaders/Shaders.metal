@@ -12,12 +12,14 @@ using namespace metal;
 struct VertexOut {
     float4 position [[position]];
     float4 color;
+    float2 uv;
 };
 
 // Vertex structure
 struct Vertex {
     float2 position;
     float4 color;
+    float2 uv;
 };
 
 // Vertex shader
@@ -30,10 +32,11 @@ vertex VertexOut vertex_main(
     VertexOut out;
     out.position = float4(v.position, 0.0, 1.0);
     out.color = v.color;
+    out.uv = v.uv;
     return out;
 }
 
 // Fragment shader (solid white)
 fragment float4 fragment_main(VertexOut in [[stage_in]]) {
-    return in.color;
+    return float4(in.uv, 0.0, 1.0);
 }

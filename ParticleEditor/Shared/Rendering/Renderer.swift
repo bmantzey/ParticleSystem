@@ -16,10 +16,10 @@ final class Renderer: NSObject, MTKViewDelegate {
     private var indexBuffer: MTLBuffer!
     
     private let vertices: [Vertex] = [
-        Vertex(position: [-0.5,  0.5], color: [1, 0, 0, 1]),
-        Vertex(position: [ 0.5,  0.5], color: [0, 1, 0, 1]),
-        Vertex(position: [-0.5, -0.5], color: [0, 0, 1, 1]),
-        Vertex(position: [ 0.5, -0.5], color: [1, 1, 0, 1]),
+        Vertex(position: [-0.5,  0.5], color: [1, 0, 0, 1], uv: [0, 0]), // tl
+        Vertex(position: [ 0.5,  0.5], color: [0, 1, 0, 1], uv: [1, 0]), // tr
+        Vertex(position: [-0.5, -0.5], color: [0, 0, 1, 1], uv: [0, 1]), // bl
+        Vertex(position: [ 0.5, -0.5], color: [1, 1, 0, 1], uv: [1, 1])  // br
     ]
     
     private let indices: [UInt16] = [
