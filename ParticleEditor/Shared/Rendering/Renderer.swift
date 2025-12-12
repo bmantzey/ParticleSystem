@@ -59,7 +59,20 @@ final class Renderer: NSObject, MTKViewDelegate {
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = library?.makeFunction(name: "vertex_main")
         pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "fragment_main")
-        pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
+        guard let colorAttachment = pipelineDescriptor.colorAttachments[0] else {
+            fatalError("Missing color attachment 0 on pipeline descriptor.")
+        }
+        
+        colorAttachment.pixelFormat = mtkView.colorPixelFormat
+        // Enable standard alpha blending (straight alpha)
+        colorAttachment.isBlendingEnabled = true
+        colorAttachment.rgbBlendOperation = .add
+        colorAttachment.alphaBlendOperation = .add
+        colorAttachment.sourceRGBBlendFactor = .sourceAlpha
+        colorAttachment.sourceAlphaBlendFactor = .sourceAlpha
+        colorAttachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
+        colorAttachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
+        
         
         // Compile pipeline
         do {

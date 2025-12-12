@@ -32,7 +32,7 @@ struct MetalViewRepresentable: UIViewRepresentable {
 
     func makeUIView(context: Context) -> MTKView {
         let mtkView = MTKView()
-        mtkView.clearColor = MTLClearColor(red: 0.2, green: 0.0, blue: 0.8, alpha: 1.0)
+        mtkView.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         context.coordinator.attach(to: mtkView)
         return mtkView
     }
@@ -60,7 +60,7 @@ struct MetalViewRepresentable: NSViewRepresentable {
     
     func makeNSView(context: Context) -> MTKView {
         let mtkView = MTKView()
-        mtkView.clearColor = MTLClearColor(red: 0.2, green: 0.0, blue: 0.8, alpha: 1.0)
+        mtkView.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         context.coordinator.attach(to: mtkView)
         return mtkView
     }

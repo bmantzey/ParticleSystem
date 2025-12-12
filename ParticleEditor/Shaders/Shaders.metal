@@ -38,5 +38,9 @@ vertex VertexOut vertex_main(
 
 // Fragment shader (solid white)
 fragment float4 fragment_main(VertexOut in [[stage_in]]) {
-    return float4(in.uv, 0.0, 1.0);
+    float2 centeredUV = in.uv - float2(0.5, 0.5);
+    float dist = length(centeredUV);
+    float alpha = smoothstep(0.5, 0.45, dist);
+    
+    return float4(1.0, 1.0, 1.0, alpha);
 }
