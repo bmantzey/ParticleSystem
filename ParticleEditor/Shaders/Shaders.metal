@@ -14,24 +14,22 @@ struct VertexOut {
     float4 color;
 };
 
+// Vertex structure
+struct Vertex {
+    float2 position;
+    float4 color;
+};
+
 // Vertex shader
-vertex VertexOut vertex_main(uint vertexID [[vertex_id]]) {
-    // Temporary triangle for proof
-    float2 positions[3] = {
-        float2( 0.0, 0.5), // top
-        float2( -0.5, -0.5), // bottom left
-        float2( 0.5, -0.5), // bottom right
-    };
-    
-    float4 colors[3] = {
-        float4(1,0,0,1), // red
-        float4(0,1,0,1), // green
-        float4(0,0,1,1), // blue
-    };
+vertex VertexOut vertex_main(
+                             const device Vertex* vertices [[buffer(0)]],
+                             uint vid [[vertex_id]]
+                             ) {
+    Vertex v = vertices[vid];
     
     VertexOut out;
-    out.position = float4(positions[vertexID], 0.0, 1.0);
-    out.color = colors[vertexID];
+    out.position = float4(v.position, 0.0, 1.0);
+    out.color = v.color;
     return out;
 }
 

@@ -12,6 +12,13 @@ final class Renderer: NSObject, MTKViewDelegate {
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
     private var pipelineState: MTLRenderPipelineState!
+    private var vertexBuffer: MTLBuffer!
+    
+    private let vertexData: [Vertex] = [
+        Vertex(position: [ 0.0,  0.5], color: [1, 0, 0, 1]),
+        Vertex(position: [-0.5, -0.5], color: [0, 1, 0, 1]),
+        Vertex(position: [ 0.5, -0.5], color: [0, 0, 1, 1]),
+    ]
     
     init(mtkView: MTKView) {
         guard let device = MTLCreateSystemDefaultDevice() else {
@@ -25,6 +32,11 @@ final class Renderer: NSObject, MTKViewDelegate {
             fatalError("Failed to create Metal command queue.")
         }
         self.commandQueue = commandQueue
+        
+        let length = MemoryLayout<Vertex>.stride * vertexData.count
+        vertexBuffer = device.makeBuffer(bytes: vertexData,
+                                         length: length,
+                                         options: [])
         
         // Load default library, which contains Shaders.metal
         let library = device.makeDefaultLibrary()
@@ -57,6 +69,7 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return }
         
+        encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         encoder.setRenderPipelineState(pipelineState)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
         
