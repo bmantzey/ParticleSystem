@@ -13,11 +13,18 @@ final class Renderer: NSObject, MTKViewDelegate {
     private let commandQueue: MTLCommandQueue
     private var pipelineState: MTLRenderPipelineState!
     private var vertexBuffer: MTLBuffer!
+    private var indexBuffer: MTLBuffer!
     
-    private let vertexData: [Vertex] = [
-        Vertex(position: [ 0.0,  0.5], color: [1, 0, 0, 1]),
-        Vertex(position: [-0.5, -0.5], color: [0, 1, 0, 1]),
-        Vertex(position: [ 0.5, -0.5], color: [0, 0, 1, 1]),
+    private let vertices: [Vertex] = [
+        Vertex(position: [-0.5,  0.5], color: [1, 0, 0, 1]),
+        Vertex(position: [ 0.5,  0.5], color: [0, 1, 0, 1]),
+        Vertex(position: [-0.5, -0.5], color: [0, 0, 1, 1]),
+        Vertex(position: [ 0.5, -0.5], color: [1, 1, 0, 1]),
+    ]
+    
+    private let indices: [UInt16] = [
+        0, 1, 2,
+        2, 1, 3
     ]
     
     init(mtkView: MTKView) {
@@ -33,11 +40,18 @@ final class Renderer: NSObject, MTKViewDelegate {
         }
         self.commandQueue = commandQueue
         
-        let length = MemoryLayout<Vertex>.stride * vertexData.count
-        vertexBuffer = device.makeBuffer(bytes: vertexData,
-                                         length: length,
-                                         options: [])
-        
+        let length = MemoryLayout<Vertex>.stride * vertices.count
+        vertexBuffer = device.makeBuffer(
+            bytes: vertices,
+            length: length,
+            options: []
+        )
+        indexBuffer = device.makeBuffer(
+            bytes: indices,
+            length: MemoryLayout<UInt16>.stride * indices.count,
+            options: []
+        )
+       
         // Load default library, which contains Shaders.metal
         let library = device.makeDefaultLibrary()
         
@@ -71,7 +85,13 @@ final class Renderer: NSObject, MTKViewDelegate {
         
         encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         encoder.setRenderPipelineState(pipelineState)
-        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
+        encoder.drawIndexedPrimitives(
+            type: .triangle,
+            indexCount: 6,
+            indexType: .uint16,
+            indexBuffer: indexBuffer,
+            indexBufferOffset: 0
+        )
         
         encoder.endEncoding()
         
