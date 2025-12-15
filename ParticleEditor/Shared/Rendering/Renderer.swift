@@ -6,6 +6,11 @@
 //
 
 import MetalKit
+import simd
+
+struct Uniforms {
+    var projectionMatrix: simd_float4x4
+}
 
 final class Renderer: NSObject, MTKViewDelegate {
     
@@ -14,6 +19,7 @@ final class Renderer: NSObject, MTKViewDelegate {
     private var pipelineState: MTLRenderPipelineState!
     private var vertexBuffer: MTLBuffer!
     private var indexBuffer: MTLBuffer!
+    private var uniformBuffer: MTLBuffer!
     
     private let vertices: [Vertex] = [
         Vertex(position: [-0.5,  0.5], color: [1, 0, 0, 1], uv: [0, 0]), // tl
@@ -83,11 +89,49 @@ final class Renderer: NSObject, MTKViewDelegate {
         
         super.init()
         
+        updateUniforms(for: mtkView.drawableSize)
         mtkView.delegate = self
+
+    }
+    
+    private static func makeOrthoProjection(width: Float, height: Float) -> simd_float4x4 {
+        let aspect = width / height
+
+        let left: Float   = -aspect
+        let right: Float  =  aspect
+        let bottom: Float = -1
+        let top: Float    =  1
+        let near: Float   = -1
+        let far: Float    =  1
+
+        return simd_float4x4(columns: (
+            SIMD4<Float>(2 / (right - left), 0, 0, 0),
+            SIMD4<Float>(0, 2 / (top - bottom), 0, 0),
+            SIMD4<Float>(0, 0, -2 / (far - near), 0),
+            SIMD4<Float>(
+                -(right + left) / (right - left),
+                -(top + bottom) / (top - bottom),
+                -(far + near) / (far - near),
+                1
+            )
+        ))
+    }
+    
+    private func updateUniforms(for size: CGSize) {
+        let w = max(Float(size.width), 1)
+        let h = max(Float(size.height), 1)
+        
+        let projection = Renderer.makeOrthoProjection(width: w, height: h)
+        var uniforms = Uniforms(projectionMatrix: projection)
+        
+        if uniformBuffer == nil {
+            uniformBuffer = device.makeBuffer(length: MemoryLayout<Uniforms>.stride, options: [])
+        }
+        memcpy(uniformBuffer.contents(), &uniforms, MemoryLayout<Uniforms>.stride)
     }
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        // TODO:
+        updateUniforms(for: size)
     }
     
     func draw(in view: MTKView) {
@@ -96,7 +140,12 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return }
         
+        
         encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        if uniformBuffer == nil {
+            updateUniforms(for: view.drawableSize)
+        }
+        encoder.setVertexBuffer(uniformBuffer, offset: 0, index: 1)
         encoder.setRenderPipelineState(pipelineState)
         encoder.drawIndexedPrimitives(
             type: .triangle,
