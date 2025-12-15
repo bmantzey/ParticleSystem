@@ -18,6 +18,7 @@
 		C48EDC7E2EEB4116008DC7F6 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC7D2EEB4116008DC7F6 /* Renderer.swift */; };
 		C48EDC802EEB77BD008DC7F6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC7F2EEB77BD008DC7F6 /* Shaders.metal */; };
 		C48EDC822EEB8F11008DC7F6 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC812EEB8F11008DC7F6 /* Vertex.swift */; };
+		C4E1A0E62EF0C26600645D36 /* fuzzy.png in Resources */ = {isa = PBXBuildFile; fileRef = C4E1A0E52EF0C26600645D36 /* fuzzy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		C48EDC7D2EEB4116008DC7F6 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C48EDC7F2EEB77BD008DC7F6 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		C48EDC812EEB8F11008DC7F6 /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		C4E1A0E52EF0C26600645D36 /* fuzzy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fuzzy.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -100,6 +102,7 @@
 		C48EDC322EEA3563008DC7F6 = {
 			isa = PBXGroup;
 			children = (
+				C4E1A0E82EF0C28600645D36 /* Resources */,
 				C48EDC6B2EEA35F1008DC7F6 /* Shaders */,
 				C48EDC652EEA35B5008DC7F6 /* Shared */,
 				C48EDC3D2EEA3563008DC7F6 /* ParticleEditor */,
@@ -166,6 +169,30 @@
 				C48EDC7F2EEB77BD008DC7F6 /* Shaders.metal */,
 			);
 			path = Shaders;
+			sourceTree = "<group>";
+		};
+		C4E1A0E42EF0C24800645D36 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1A0E52EF0C26600645D36 /* fuzzy.png */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		C4E1A0E72EF0C27B00645D36 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1A0E42EF0C24800645D36 /* Particles */,
+			);
+			path = Textures;
+			sourceTree = "<group>";
+		};
+		C4E1A0E82EF0C28600645D36 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1A0E72EF0C27B00645D36 /* Textures */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E1A0E62EF0C26600645D36 /* fuzzy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

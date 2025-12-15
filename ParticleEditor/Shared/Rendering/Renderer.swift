@@ -20,6 +20,7 @@ final class Renderer: NSObject, MTKViewDelegate {
     private var vertexBuffer: MTLBuffer!
     private var indexBuffer: MTLBuffer!
     private var uniformBuffer: MTLBuffer!
+    private var texture: MTLTexture!
     
     private let vertices: [Vertex] = [
         Vertex(position: [-0.5,  0.5], color: [1, 0, 0, 1], uv: [0, 0]), // tl
@@ -34,18 +35,31 @@ final class Renderer: NSObject, MTKViewDelegate {
     ]
     
     init(mtkView: MTKView) {
+        // Create the device.
         guard let device = MTLCreateSystemDefaultDevice() else {
             fatalError("Metal is not supported on this device.")
         }
         self.device = device
-        
         mtkView.device = device
         
+        // Load the texture
+        let textureLoader = MTKTextureLoader(device: device)
+        let url = Bundle.main.url(forResource: "fuzzy", withExtension: "png")!
+        do {
+            texture = try textureLoader.newTexture(URL: url, options: [
+                MTKTextureLoader.Option.SRGB: false
+            ])
+        } catch {
+            fatalError("Error loading particle texture.")
+        }
+        
+        // Make the command queue.
         guard let commandQueue = device.makeCommandQueue() else {
             fatalError("Failed to create Metal command queue.")
         }
         self.commandQueue = commandQueue
         
+        // Buffers
         let length = MemoryLayout<Vertex>.stride * vertices.count
         vertexBuffer = device.makeBuffer(
             bytes: vertices,
@@ -140,7 +154,7 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return }
         
-        
+        encoder.setFragmentTexture(texture, index: 0)
         encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         if uniformBuffer == nil {
             updateUniforms(for: view.drawableSize)

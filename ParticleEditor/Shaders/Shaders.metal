@@ -42,10 +42,10 @@ vertex VertexOut vertex_main(
 }
 
 // Fragment shader (solid white)
-fragment float4 fragment_main(VertexOut in [[stage_in]]) {
-    float2 centeredUV = in.uv - float2(0.5, 0.5);
-    float dist = length(centeredUV);
-    float alpha = 1.0 - smoothstep(0.45, 0.5, dist);
-    
-    return float4(1.0, 1.0, 1.0, alpha);
+fragment float4 fragment_main(VertexOut in [[stage_in]],
+                              texture2d<float> tex [[texture(0)]]) {
+    constexpr sampler s(address::clamp_to_edge,
+                        filter::linear);
+    float4 texColor = tex.sample(s, in.uv);
+    return texColor;
 }
