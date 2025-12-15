@@ -8,19 +8,24 @@
 import MetalKit
 import simd
 
-struct Uniforms {
-    var projectionMatrix: simd_float4x4
-}
-
 final class Renderer: NSObject, MTKViewDelegate {
     
+    // Context
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
     private var pipelineState: MTLRenderPipelineState!
+    
+    // Buffers
     private var vertexBuffer: MTLBuffer!
     private var indexBuffer: MTLBuffer!
     private var uniformBuffer: MTLBuffer!
+    private var instanceBuffer: MTLBuffer!
+    
+    // Textures
     private var texture: MTLTexture!
+    
+    // Helper Variables
+    private var instanceCount: Int = 0
     
     private let vertices: [Vertex] = [
         Vertex(position: [-0.5,  0.5], color: [1, 0, 0, 1], uv: [0, 0]), // tl
@@ -41,6 +46,25 @@ final class Renderer: NSObject, MTKViewDelegate {
         }
         self.device = device
         mtkView.device = device
+        
+        /// TEST
+        let instances: [InstanceData] = (0..<10).map { i in
+            let x = Float(i) * 0.25 - 1.0
+            return InstanceData(
+                position: SIMD2<Float>(x, 0),
+                size: 0.2,
+                color: SIMD4<Float>(1, 1, 1, 1)
+            )
+        }
+        
+        instanceCount = instances.count
+        
+        instanceBuffer = device.makeBuffer(
+            bytes: instances,
+            length: MemoryLayout<InstanceData>.stride * instances.count,
+            options: []
+        )
+        /// END TEST
         
         // Load the texture
         let textureLoader = MTKTextureLoader(device: device)
