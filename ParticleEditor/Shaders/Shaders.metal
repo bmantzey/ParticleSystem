@@ -41,11 +41,22 @@ vertex VertexOut vertex_main(
     return out;
 }
 
-// Fragment shader (solid white)
 fragment float4 fragment_main(VertexOut in [[stage_in]],
                               texture2d<float> tex [[texture(0)]]) {
+    float2 centeredUV = in.uv * 2.0 - 1.0;
+    float dist = length(centeredUV);
+    
+    // Soft circle mask
+    float circle = 1.0 - smoothstep(0.45, 0.5, dist);
+    
+    // Sample texture
     constexpr sampler s(address::clamp_to_edge,
                         filter::linear);
     float4 texColor = tex.sample(s, in.uv);
-    return texColor;
+
+    // Combine
+    float alpha = texColor.a * circle;
+    float3 color = texColor.rgb * in.color.rgb;
+
+    return float4(color, alpha);
 }
