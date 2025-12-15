@@ -176,7 +176,8 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let drawable = view.currentDrawable else { return }
         guard let descriptor = view.currentRenderPassDescriptor else { return }
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
-        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return }
+        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return
+        }
         
         encoder.setFragmentTexture(texture, index: 0)
         encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
@@ -185,12 +186,14 @@ final class Renderer: NSObject, MTKViewDelegate {
         }
         encoder.setVertexBuffer(uniformBuffer, offset: 0, index: 1)
         encoder.setRenderPipelineState(pipelineState)
+        encoder.setVertexBuffer(instanceBuffer, offset: 0, index: 2)
         encoder.drawIndexedPrimitives(
             type: .triangle,
-            indexCount: 6,
+            indexCount: indices.count,
             indexType: .uint16,
             indexBuffer: indexBuffer,
-            indexBufferOffset: 0
+            indexBufferOffset: 0,
+            instanceCount: instanceCount
         )
         
         encoder.endEncoding()

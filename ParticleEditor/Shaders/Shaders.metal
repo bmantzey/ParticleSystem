@@ -26,18 +26,31 @@ struct Uniforms {
     float4x4 projectionMatrix;
 };
 
+struct InstanceData {
+    float2 position;
+    float size;
+    float4 color;
+};
+
 // Vertex shader
 vertex VertexOut vertex_main(
                              const device Vertex* vertices [[buffer(0)]],
                              constant Uniforms& uniforms [[buffer(1)]],
-                             uint vid [[vertex_id]]
+                             const device InstanceData* inst [[buffer(2)]],
+                             uint vertexID [[vertex_id]],
+                             uint instanceID [[instance_id]]
                              ) {
-    Vertex v = vertices[vid];
     VertexOut out;
+    const Vertex v = vertices[vertexID];
+    const InstanceData data = inst[instanceID];
     
-    out.position = uniforms.projectionMatrix * float4(v.position, 0.0, 1.0);
-    out.color = v.color;
+    float2 local = vertices[vertexID].position * data.size;
+    float2 world = local + data.position;
+    
+    out.position = uniforms.projectionMatrix * float4(world, 0.0, 1.0);
+    out.color = data.color;
     out.uv = v.uv;
+    
     return out;
 }
 
