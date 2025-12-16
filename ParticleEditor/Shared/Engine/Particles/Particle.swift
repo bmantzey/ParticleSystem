@@ -5,6 +5,8 @@
 //  Created by Brandon Mantzey on 12/16/25.
 //
 //  https://bmantzey.dev
+//
+//  The idea of a "Particle": Birth -> Life -> Death
 
 import simd
 

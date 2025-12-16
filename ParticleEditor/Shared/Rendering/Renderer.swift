@@ -203,7 +203,9 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return
         }
 
+        
         // Render state
+        particleController.update(deltaTime: deltaTime, elapsedTime: elapsedTime)
         let particles = particleController.particles
         for i in particles.indices {
             instances[i].position = particles[i].position

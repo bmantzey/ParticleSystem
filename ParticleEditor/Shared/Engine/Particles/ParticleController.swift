@@ -16,11 +16,12 @@ final class ParticleController {
     }
     
     func update(deltaTime: Float, elapsedTime: Float) {
-        let amplitude: Float = 25
-        let speed: Float = 2.0
-        
+        let strength: Float = 50
+        let speed: Float = 2
+
         for i in particles.indices {
-            particles[i].position.y = sin(elapsedTime * speed) * amplitude
+            particles[i].velocity.y = sin(elapsedTime * speed) * strength
+            particles[i].position += particles[i].velocity * deltaTime
         }
     }
 }
