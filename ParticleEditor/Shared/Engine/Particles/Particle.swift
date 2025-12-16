@@ -14,4 +14,6 @@ struct Particle {
     var position: SIMD2<Float>
     var velocity: SIMD2<Float>
     
+    var age: Float = 0.0
+    let lifetime: Float    
 }

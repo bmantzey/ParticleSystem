@@ -20,8 +20,14 @@ final class ParticleController {
         let speed: Float = 2
 
         for i in particles.indices {
+            particles[i].age += deltaTime
             particles[i].velocity.y = sin(elapsedTime * speed) * strength
             particles[i].position += particles[i].velocity * deltaTime
+        }
+        
+        // Remove dead particles
+        particles.removeAll { particle in
+            particle.age >= particle.lifetime
         }
     }
 }

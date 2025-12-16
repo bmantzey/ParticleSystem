@@ -63,7 +63,9 @@ final class Renderer: NSObject, MTKViewDelegate {
                     Float.random(in: -200...200),
                     Float.random(in: -100...100)
                 ),
-                velocity: SIMD2<Float>(0, 0)
+                velocity: SIMD2<Float>(0, Float.random(in: 10...30)),
+                age: 0,
+                lifetime: Float.random(in: 2.0...5.0)
             )
         }
         
@@ -202,14 +204,21 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return
         }
-
         
         // Render state
         particleController.update(deltaTime: deltaTime, elapsedTime: elapsedTime)
         let particles = particleController.particles
-        for i in particles.indices {
-            instances[i].position = particles[i].position
+        instances = particles.map {
+            InstanceData(
+                position: $0.position,
+                size: 20,
+                color: SIMD4<Float>(1, 1, 1, 1)
+            )
         }
+        
+//        for i in particles.indices {
+//            instances[i].position = particles[i].position
+//        }
 
         memcpy(
             instanceBuffer.contents(),
@@ -225,14 +234,16 @@ final class Renderer: NSObject, MTKViewDelegate {
         encoder.setVertexBuffer(uniformBuffer, offset: 0, index: 1)
         encoder.setRenderPipelineState(pipelineState)
         encoder.setVertexBuffer(instanceBuffer, offset: 0, index: 2)
-        encoder.drawIndexedPrimitives(
-            type: .triangle,
-            indexCount: indices.count,
-            indexType: .uint16,
-            indexBuffer: indexBuffer,
-            indexBufferOffset: 0,
-            instanceCount: instances.count
-        )
+        if !instances.isEmpty {
+            encoder.drawIndexedPrimitives(
+                type: .triangle,
+                indexCount: indices.count,
+                indexType: .uint16,
+                indexBuffer: indexBuffer,
+                indexBufferOffset: 0,
+                instanceCount: instances.count
+            )
+        }
         
         encoder.endEncoding()
         
