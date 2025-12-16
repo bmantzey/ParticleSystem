@@ -24,8 +24,12 @@ final class Renderer: NSObject, MTKViewDelegate {
     // Textures
     private var texture: MTLTexture!
     
-    // Helper Variables
+    // Instance Data
     private var instanceCount: Int = 0
+    private var instances: [InstanceData] = []
+    
+    private var lastTime: Double = 0.0
+    private var elapsedTime: Float = 0.0
     
     private let vertices: [Vertex] = [
         Vertex(position: [-0.5,  0.5], color: [1, 0, 0, 1], uv: [0, 0]), // tl
@@ -47,8 +51,7 @@ final class Renderer: NSObject, MTKViewDelegate {
         self.device = device
         mtkView.device = device
         
-        /// TEST
-        let instances: [InstanceData] = (0..<10).map { i in
+        instances = (0..<10).map { i in
             let x = Float(i) * 0.25 - 1.0
             return InstanceData(
                 position: SIMD2<Float>(x, 0),
@@ -64,7 +67,6 @@ final class Renderer: NSObject, MTKViewDelegate {
             length: MemoryLayout<InstanceData>.stride * instances.count,
             options: []
         )
-        /// END TEST
         
         // Load the texture
         let textureLoader = MTKTextureLoader(device: device)
@@ -173,11 +175,33 @@ final class Renderer: NSObject, MTKViewDelegate {
     }
     
     func draw(in view: MTKView) {
+        let currentTime = CACurrentMediaTime()
+        let deltaTime: Float
+        if lastTime == 0 {
+            deltaTime = 0
+        } else {
+            deltaTime = Float(currentTime - lastTime)
+        }
+        elapsedTime += deltaTime
+        
         guard let drawable = view.currentDrawable else { return }
         guard let descriptor = view.currentRenderPassDescriptor else { return }
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return
         }
+        
+        let amplitude: Float = 0.25
+        let speed: Float = 2.0
+        for i in 0..<instances.count {
+            var inst = instances[i]
+            inst.position.y = sin(elapsedTime * speed) * amplitude
+            instances[i] = inst
+        }
+        memcpy(
+            instanceBuffer.contents(),
+            instances,
+            MemoryLayout<InstanceData>.stride * instances.count
+        )
         
         encoder.setFragmentTexture(texture, index: 0)
         encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
@@ -200,7 +224,11 @@ final class Renderer: NSObject, MTKViewDelegate {
         
         commandBuffer.present(drawable)
         commandBuffer.commit()
+        
+        lastTime = currentTime
+
     }
     
     
 }
+
