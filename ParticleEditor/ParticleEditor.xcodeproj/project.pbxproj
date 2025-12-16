@@ -154,9 +154,8 @@
 		C48EDC682EEA35CB008DC7F6 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				C48EDC732EEA3744008DC7F6 /* Particle.swift */,
+				C4E1A0EB2EF2002400645D36 /* Particles */,
 				C48EDC752EEA379E008DC7F6 /* Emitter.swift */,
-				C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */,
 				C48EDC792EEA37B8008DC7F6 /* ParticleSystem.swift */,
 			);
 			path = Engine;
@@ -193,6 +192,15 @@
 				C4E1A0E72EF0C27B00645D36 /* Textures */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C4E1A0EB2EF2002400645D36 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				C48EDC732EEA3744008DC7F6 /* Particle.swift */,
+				C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

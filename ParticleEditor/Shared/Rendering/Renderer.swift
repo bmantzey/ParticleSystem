@@ -4,11 +4,15 @@
 //
 //  Created by Brandon Mantzey on 12/11/25.
 //
+//  https://bmantzey.dev
 
 import MetalKit
 import simd
 
 final class Renderer: NSObject, MTKViewDelegate {
+    
+    // Controllers
+    private var particleController: ParticleController!
     
     // Context
     private let device: MTLDevice
@@ -25,9 +29,9 @@ final class Renderer: NSObject, MTKViewDelegate {
     private var texture: MTLTexture!
     
     // Instance Data
-    private var instanceCount: Int = 0
     private var instances: [InstanceData] = []
     
+    // Timing
     private var lastTime: Double = 0.0
     private var elapsedTime: Float = 0.0
     
@@ -51,17 +55,28 @@ final class Renderer: NSObject, MTKViewDelegate {
         self.device = device
         mtkView.device = device
         
-        instances = (0..<10).map { i in
-            let x = Float(i) * 0.25 - 1.0
-            return InstanceData(
-                position: SIMD2<Float>(x, 0),
-                size: 0.2,
-                color: SIMD4<Float>(1, 1, 1, 1)
+        let initialParticleCount = 50
+        
+        let initialParticles = (0..<initialParticleCount).map { i in
+            Particle(
+                position: SIMD2<Float>(
+                    Float.random(in: -200...200),
+                    Float.random(in: -100...100)
+                ),
+                velocity: SIMD2<Float>(0, 0)
             )
         }
         
-        instanceCount = instances.count
+        particleController = ParticleController(particles: initialParticles)
         
+        instances = initialParticles.map {
+            InstanceData(
+                position: $0.position,
+                size: 20,
+                color: SIMD4<Float>(1, 1, 1, 1)
+            )
+        }
+                
         instanceBuffer = device.makeBuffer(
             bytes: instances,
             length: MemoryLayout<InstanceData>.stride * instances.count,
@@ -135,12 +150,10 @@ final class Renderer: NSObject, MTKViewDelegate {
     }
     
     private static func makeOrthoProjection(width: Float, height: Float) -> simd_float4x4 {
-        let aspect = width / height
-
-        let left: Float   = -aspect
-        let right: Float  =  aspect
-        let bottom: Float = -1
-        let top: Float    =  1
+        let left: Float   = -width / 2
+        let right: Float  =  width / 2
+        let bottom: Float = -height / 2
+        let top: Float    =  height / 2
         let near: Float   = -1
         let far: Float    =  1
 
@@ -189,15 +202,13 @@ final class Renderer: NSObject, MTKViewDelegate {
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else { return
         }
-        
-        let amplitude: Float = 0.25
-        let speed: Float = 2.0
-        for i in 0..<instances.count {
-            
-            var inst = instances[i]
-            inst.position.y = sin(elapsedTime * speed + Float(i)) * amplitude
-            instances[i] = inst
+
+        // Render state
+        let particles = particleController.particles
+        for i in particles.indices {
+            instances[i].position = particles[i].position
         }
+
         memcpy(
             instanceBuffer.contents(),
             instances,
@@ -218,7 +229,7 @@ final class Renderer: NSObject, MTKViewDelegate {
             indexType: .uint16,
             indexBuffer: indexBuffer,
             indexBufferOffset: 0,
-            instanceCount: instanceCount
+            instanceCount: instances.count
         )
         
         encoder.endEncoding()

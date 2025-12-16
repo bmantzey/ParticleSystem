@@ -4,6 +4,7 @@
 //
 //  Created by Brandon Mantzey on 12/15/25.
 //
+//  https://bmantzey.dev
 
 import MetalKit
 import simd
