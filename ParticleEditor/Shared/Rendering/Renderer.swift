@@ -193,8 +193,9 @@ final class Renderer: NSObject, MTKViewDelegate {
         let amplitude: Float = 0.25
         let speed: Float = 2.0
         for i in 0..<instances.count {
+            
             var inst = instances[i]
-            inst.position.y = sin(elapsedTime * speed) * amplitude
+            inst.position.y = sin(elapsedTime * speed + Float(i)) * amplitude
             instances[i] = inst
         }
         memcpy(
