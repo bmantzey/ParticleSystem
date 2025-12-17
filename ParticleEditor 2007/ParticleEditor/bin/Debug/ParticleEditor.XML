@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ParticleEditor</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "M:ParticleEditor.MyTimer.Reset" -->
+        <member name="M:ParticleEditor.MyTimer.Update">
+            <summary>
+            Use to update timer.  Call only ONCE per frame.
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.MyTimer.GetTime">
+            <summary>
+            Returns (in seconds) the amount of time from the last Reset() call.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ParticleEditor.MyTimer.GetDeltaTime">
+            <summary>
+            Returns (in seconds) the amount of time from last frame.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ParticleEditor.Engine">
+            <summary>
+            File:		"Engine.cs"
+            Author:		Brandon Mantzey
+            Purpose:	Contains all data used for the emission of particles.
+            			Contains all data used for each individual particle.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.particles">
+            <summary>
+            All particles are contained in this list.
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.Engine.#ctor">
+            <summary>
+            Constructor for the Engine class.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.updateFunc">
+            <summary>
+            Calls the update function that updates the particle data.  This is a delegate (function pointer).
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.addFunc">
+            <summary>
+            Calls the add function that adds a particle to the list.  This is a delegate (function pointer).
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.XMLIO">
+            <summary>
+            Serialization member.
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.Engine.update">
+            <summary>
+            This function is called every frame.  It checks to see if particles need to be added/removed from 
+            the list and updates the particles every frame.
+            </summary>
+        </member>
+        <member name="T:ParticleEditor.Engine.Particle">
+            <summary>
+            Structure:	Particle
+            Author:		Brandon Mantzey
+            Purpose:	Contains all data used by each particle that is updated and rendered.
+            </summary>
+            <returns>Normalized representation of the direction passed in.</returns>
+        </member>
+        <member name="F:ParticleEditor.Engine.Particle.position">
+            <summary>
+            Current particle position.  Initialize to Emitter.position
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Particle.currentVelocity">
+            <summary>
+            Current speed of each individual particle.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Particle.isAlive">
+            <summary>
+            A flag used to determine if this particle should be killed and recreated.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Particle.currentColor">
+            <summary>
+            Initialized to Emitter.startColor.  Linearly interpolated from startColor to endColor based on elapsedTime/lifeTime.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Particle.currentSize">
+            <summary>
+            Linearly interpolated from startSize to endSize based on elapsedTime/lifeTime.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Particle.elapsedTime">
+            <summary>
+            Needed for each particle in order to update the size and color.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Particle.lifeTime">
+            <summary>
+            The length, in time, that the particle will be alive.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.acceleration">
+            <summary>
+            Apply this to each particle every update - time based.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.beginSize">
+            <summary>
+            Begin scale of each particle.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.directionBegin">
+            <summary>
+            Direction will multiply by its speed every update.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.directionEnd">
+            <summary>
+            In order to change position.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.endColor">
+            <summary>
+            End color of each particle.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.endSize">
+            <summary>
+            End scale of each particle.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.maxLifetime">
+            <summary>
+            Maximum lifetime of the particle.  Range of lifetime is important to prevent "clumping".
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.minLifetime">
+            <summary>
+            Minimum lifetime of the particle.  Range of lifetime is important to prevent "clumping".
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.numParticles">
+            <summary>
+            Dynamically changes the size of the particle List and adds the new particles to the List.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.position">
+            <summary>
+            Use this to set the initial position of the particle when created
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.size">
+            <summary>
+            Size of the emitter base.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.speed">
+            <summary>
+            This is the starting speed for all particles.
+            </summary>
+        </member>
+        <member name="F:ParticleEditor.Engine.Emitter.startColor">
+            <summary>
+            Start color of each particle.
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:ParticleEditor.Form1">
+            <summary>
+            File:		"Form1.cs"
+            Author:		Brandon Mantzey
+            Purpose:	Contains all data retrieved from the form, sends that data to the Engine,
+            			implements DirectX.
+            </summary>
+            <summary>
+            Form1 - Main form that contains all code for data generation of particle editor.
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.Form1.#ctor">
+            <summary>
+            Constructor for Form1
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.Form1.timer1_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Function:		void timer1_Tick(object sender, EventArgs e) 
+            Last Modified:	March 26, 2007
+            Purpose:		Used to render DirectX graphics to the screen per milisecond.
+            </summary>
+            <param name="sender">Compiler generated argument.</param>
+            <param name="e">Compiler generated argument.</param>
+        </member>
+        <member name="M:ParticleEditor.Form1.UpdateParticle(ParticleEditor.Engine.Particle@)">
+            <summary>
+            Function:		bool UpdateParticle(ref Particle p)
+            Last Modified:	March 26, 2007
+            Purpose:		Function is called from Engine through the delegate.
+            				Updates the individual particle passed into this function.
+            </summary>
+            <param name="p">The particle to update, changes will be made to this particle and 
+            				those changes will be retained.</param>
+            <returns>True if the particle lives.  False to destroy the particle.</returns>
+        </member>
+        <member name="M:ParticleEditor.Form1.AddParticle(ParticleEditor.Engine.Particle@)">
+            <summary>
+            Function:		void AddParticle(ref Particle p)
+            Last Modified:	March 26, 2007
+            Purpose:		Function is called from Engine through the delegate.
+            				Creates a new particle based on the default contents as set in the emitter.
+            </summary>
+            <param name="p">The particle is created and returned through p.</param>
+        </member>
+        <member name="M:ParticleEditor.Form1.AngleToVector(System.Double)">
+            <summary>
+            Function:		Vector2 AngleToVector(double angle)
+            Last Modified:	March 26, 2007
+            Purpose:		Takes in an angle and returns a normalized vector representing the direction
+            				of that angle.
+            </summary>
+            <param name="angle">Uses this angle to create the return vector.</param>
+            <returns>Normalized representation of the direction passed in.</returns>
+        </member>
+        <member name="M:ParticleEditor.Form1.InitGeometry">
+            <summary>
+            Function:		void InitGeometry()
+            Last Modified:	March 26, 2007
+            Purpose:		All pertainent initialization.
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.Form1.Form1_Load(System.Object,System.EventArgs)">
+            <summary>
+            Function:		void Form1_Load(object sender, EventArgs e)
+            Last Modified:	March 26, 2007
+            Purpose:		Also contains initialization which is neccessary to happen after the form loads.
+            </summary>
+            <param name="sender">Compiler generated argument.</param>
+            <param name="e">Compiler generated argument.</param>
+        </member>
+        <member name="M:ParticleEditor.Form1.Form1_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Function:		void Form1_FormClosed(object sender, FormClosedEventArgs e)
+            Last Modified:	March 26, 2007
+            Purpose:		The safe release of all DirectX references.
+            </summary>
+            <param name="sender">Compiler generated argument.</param>
+            <param name="e">Compiler generated argument.</param>
+        </member>
+        <member name="F:ParticleEditor.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ParticleEditor.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ParticleEditor.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ParticleEditor.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ParticleEditor.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ParticleEditor.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,17 @@
+bin\Release\ParticleEditor.exe
+bin\Release\ParticleEditor.pdb
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\ParticleEditor.Form1.resources
+obj\Release\ParticleEditor.Properties.Resources.resources
+obj\Release\ParticleEditor.csproj.GenerateResource.Cache
+obj\Release\ParticleEditor.exe
+obj\Release\ParticleEditor.pdb
+bin\Debug\ParticleEditor.exe
+bin\Debug\ParticleEditor.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\ParticleEditor.Form1.resources
+obj\Debug\ParticleEditor.Properties.Resources.resources
+obj\Debug\ParticleEditor.csproj.GenerateResource.Cache
+obj\Debug\ParticleEditor.exe
+obj\Debug\ParticleEditor.pdb
+bin\Debug\ParticleEditor.XML
