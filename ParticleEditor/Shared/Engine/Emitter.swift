@@ -25,25 +25,30 @@ import simd
 
  */
 
+// TODO: Particle reuse. A dead pool.  Create user_max_particles first, allocate them all, and mark them as 'dead' at creation time.  Part of spawning a new particle would be marking it as alive and setting its configuration values.
+
 final class Emitter {
     
     // Configuration
     let spawnRate: Float // particles per second (pps)
-    let maxParticles: Int
+    var userMaxParticles = 100
     
-    // Internal state
+    // Accumulator makes particles spawn time based not frame based, to prevent surging.
     private var accumulator: Float = 0
     
+    // TODO: This init should take a config file.
     init(spawnRate: Float, maxParticles: Int) {
         self.spawnRate = spawnRate
-        self.maxParticles = maxParticles
+        self.userMaxParticles = maxParticles
     }
+    
+    // TODO: We need an update call for when a new set of emitter parameters has been set by the user from the UI.
     
     func emit(deltaTime: Float, into controller: ParticleController) {
         accumulator += deltaTime * spawnRate
         
         while accumulator >= 1 {
-            if controller.particles.count >= maxParticles {
+            if controller.particles.count >= userMaxParticles {
                 break
             }
             
@@ -53,6 +58,7 @@ final class Emitter {
     }
     
     private func makeParticle() -> Particle {
+        // TODO: Actual particle configuration based on a config file which will be received by the controls in the UI.  Needs to be comprehensive, reflect the UI, and not have these temporary random numbers in it.
         Particle(
             position: SIMD2<Float>(0, 0),
             velocity: SIMD2<Float>(
