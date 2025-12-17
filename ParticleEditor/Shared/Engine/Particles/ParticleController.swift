@@ -11,11 +11,8 @@ import simd
 final class ParticleController {
     private(set) var particles: [Particle] = []
     
-    init(particles: [Particle]) {
-        self.particles = particles
-    }
-    
     func update(deltaTime: Float, elapsedTime: Float) {
+        // Update
         let strength: Float = 50
         let speed: Float = 2
 
@@ -29,5 +26,9 @@ final class ParticleController {
         particles.removeAll { particle in
             particle.age >= particle.lifetime
         }
+    }
+    
+    func addParticle(_ particle: Particle) {
+        particles.append(particle)
     }
 }
