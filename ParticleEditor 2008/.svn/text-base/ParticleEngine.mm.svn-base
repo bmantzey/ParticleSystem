@@ -1,0 +1,261 @@
+//
+//  ParticleEngine.m
+//  ParticleEditor
+//
+//  Created by Brandon Mantzey on 12/4/08.
+//  Copyright 2008 Stratogon. All rights reserved.
+//
+
+#import "ParticleEngine.h"
+#import "Math3d.h"
+
+
+@interface ParticleEngine (Private)
+
+-(void)AngleToVector:(M3DVector2d)vectorOut
+					:(double)angle;
+
+@end
+
+@implementation ParticleEngine (Private)
+
+-(void)AngleToVector:(M3DVector2d)vectorOut
+					:(double)angle
+{
+	M3DVector2d vector;
+	vector[X] = cos(TO_RADIANS(angle));
+	vector[Y] = -sin(TO_RADIANS(angle));
+	memcpy(vectorOut, vector, sizeof(M3DVector2d));	
+}
+
+@end
+
+@implementation ParticleEngine
+
+@synthesize m_nNumParticles;
+@synthesize m_fEmPosX, m_fEmPosY;
+@synthesize m_fEmDirBegin, m_fEmDirEnd;
+@synthesize m_fEmSizeX, m_fEmSizeY;
+@synthesize m_bRandDirection;
+@synthesize m_bRandPos;
+@synthesize m_bRandEmSize;
+@synthesize m_fParAccelX, m_fParAccelY;
+@synthesize m_fParLifeMin, m_fParLifeMax;
+@synthesize m_fParRotationBegin, m_fParRotationEnd;
+@synthesize m_fParSizeBegin, m_fParSizeEnd;
+@synthesize m_fParSpeed;
+@synthesize m_bRandAccel;
+@synthesize m_bRandLifetime;
+@synthesize m_bRandParSize;
+@synthesize m_bRandParNum;
+@synthesize m_bRandRot;
+@synthesize m_bRandSpeed;
+@synthesize m_fRedStart, m_fGreenStart, m_fBlueStart, m_fAlphaStart;
+@synthesize m_fRedEnd, m_fGreenEnd, m_fBlueEnd, m_fAlphaEnd;
+@synthesize m_bRandStartColor;
+@synthesize m_bRandEndColor;
+@synthesize m_fRunTime;
+@synthesize m_bRunLimited;
+@synthesize m_tEmitter;
+
+-(id)initWithTexture:(NSString*)particleTexture
+{
+	if(![super init])
+		return nil;
+	
+	m_tEmitter.m_fRunTime = 1.0;
+	texture = [particleTexture retain];
+	m_vctParticles = new ld_vector<tParticle>;
+	m_pTM = [TextureManager getInstance];
+	[m_pTM LoadTexture:texture];
+	
+	return self;
+}
+
+-(void)RenderParticleSystem
+{
+	//TODO:  This is going to be a complicated port.
+	// Will involve DirectX to OpenGL porting
+	// Will involve ld_vector iteration and drawing
+	//TODO:  Draw as point sprites.  Drawing as point sprites will require modification of the UI
+	
+	ld_vector<tParticle>::iterator draw = m_vctParticles->begin();
+	while(draw != m_vctParticles->end())
+	{
+		// Apply transformations and draw here
+		tParticle drawPart = (*draw);
+		m_pTM.rotAngle = drawPart.currentRotation;
+		m_pTM.xPos = drawPart.position[X];
+		m_pTM.yPos = drawPart.position[Y];
+		m_pTM.xScale = drawPart.currentSize;
+		m_pTM.yScale = drawPart.currentSize;
+		float texSize = [m_pTM GetTextureWidth:texture];
+		m_pTM.xRot = (m_pTM.xPos + texSize/2.0);
+		m_pTM.yRot = (m_pTM.yPos + texSize/2.0);
+		m_pTM.xScalePoint = (texSize/2.0);
+		m_pTM.yScalePoint = (texSize/2.0);
+		M3DVector4f drawColor;
+		drawColor[R] = drawPart.currentColor[R];
+		drawColor[G] = drawPart.currentColor[G];
+		drawColor[B] = drawPart.currentColor[B];
+		drawColor[A] = drawPart.currentColor[A];
+		[m_pTM SetColor:drawColor];
+		
+		[m_pTM Draw:texture];
+
+		++draw;
+	}
+}
+-(void)LoadParticleSystem:(NSString*)pebPath  // This is the binary file.
+						 :(NSString*)texturePath	// This is the texture.
+{
+	NSBundle* mainBundle = [NSBundle mainBundle];
+	pebPath = [mainBundle pathForResource:pebPath ofType:nil];
+	NSData *inData = [[NSData alloc] initWithContentsOfFile:pebPath];
+	[inData getBytes:(void*)&m_tEmitter length:sizeof(tEmitter)];
+	if(texturePath != nil)
+	{
+		[m_pTM LoadTexture:texturePath];
+	}
+}
+-(void)ChangeTexture:(NSString*)newTexture
+{
+	[m_pTM ReleaseTexture:texture];
+	[texture release];
+	texture = [newTexture retain];
+	[m_pTM LoadTexture:texture];	
+}
+
+-(void)SetRunTime:(double)timeToRun
+{
+	m_tEmitter.m_fRunTime = timeToRun/1000.0;
+	m_tEmitter.m_bRunLimited = YES;
+}
+-(void)ResumeRun
+{
+	m_tEmitter.m_bRunLimited = NO;
+	m_tEmitter.m_fRunTime = 1.0;
+}
+
+-(void)Update:(double)timer
+{
+	m_fTimer = timer;
+	if(m_tEmitter.m_bRunLimited)
+	{
+		m_tEmitter.m_fRunTime -= m_fTimer;
+	}
+	if(m_tEmitter.m_fRunTime > 0.0 || !m_tEmitter.m_bRunLimited)
+	{
+		// If any particles have been destroyed, make new ones.
+		while((unsigned int)m_tEmitter.numParticles > m_vctParticles->size())
+		{
+			// Init the new particle, give a copy of it to the ldVector, and let it fall out of scope.
+			tParticle add;
+			// TODO: Need the add func here as well.
+			[self AddParticle:&add];
+			m_vctParticles->push_back(add);
+		}
+	}
+	
+	// Update the particles
+	ld_vector<tParticle>::iterator kill = m_vctParticles->begin();
+	while(kill != m_vctParticles->end())
+	{
+		// Update the particle - returns NO if it should be deleted
+		// If the elapsed time is greater than the lifetime
+		// or if the elapsed time is less than 0
+		// remove that particle from the vector
+		if(![self UpdateParticle:&(*kill)]		||
+		   kill->elapsedTime > kill->lifeTime	||
+		   kill->elapsedTime < 0)
+			kill = m_vctParticles->remove(kill);
+		else
+			++kill;
+	}
+}
+-(void)AddParticle:(tParticle*)p
+{
+	memcpy(&p->currentColor, &m_tEmitter.startColor, sizeof(m_tEmitter.startColor));
+	p->currentSize = m_tEmitter.beginSize;
+	p->currentRotation = 0.0;
+	p->endRotation = RAND_FLOAT(m_tEmitter.rotationBegin, m_tEmitter.rotationEnd);
+	p->position[X] = RAND_FLOAT(m_tEmitter.position[X], m_tEmitter.position[X]+m_tEmitter.size.width);
+	p->position[Y] = RAND_FLOAT(m_tEmitter.position[Y], m_tEmitter.position[Y]+m_tEmitter.size.height);
+	double CurrentAngle = RAND_FLOAT(m_tEmitter.directionBegin, m_tEmitter.directionEnd);
+	[self AngleToVector:p->currentVelocity :CurrentAngle];
+	p->currentVelocity[X] *= m_tEmitter.speed;
+	p->currentVelocity[Y] *= m_tEmitter.speed;
+	
+
+	p->isAlive = YES;
+	p->lifeTime = RAND_FLOAT(m_tEmitter.minLifetime, m_tEmitter.maxLifetime)/1000;
+	p->elapsedTime = 0.0;
+}
+-(BOOL)UpdateParticle:(tParticle*)p
+{
+	p->elapsedTime += m_fTimer;
+	if(p->elapsedTime >= p->lifeTime)
+	{
+		p->isAlive = NO;
+		return NO;
+	}
+	
+	p->currentVelocity[X] += m_tEmitter.acceleration[X] * m_fTimer;
+	p->currentVelocity[Y] += m_tEmitter.acceleration[Y] * m_fTimer;
+	p->position[X] += (p->currentVelocity[X] * m_fTimer);
+	p->position[Y] += (p->currentVelocity[Y] * m_fTimer);
+// Interpolation algorithm:
+//  result = start + (end - start) * time%;
+//	result = start + (end - start) * (currentTime/lifeTime)
+	p->currentRotation = (p->endRotation) * (p->elapsedTime/p->lifeTime);
+	p->currentColor[R] = m_tEmitter.startColor[R] + (m_tEmitter.endColor[R] - m_tEmitter.startColor[R]) * (p->elapsedTime/p->lifeTime);
+	p->currentColor[G] = m_tEmitter.startColor[G] + (m_tEmitter.endColor[G] - m_tEmitter.startColor[G]) * (p->elapsedTime/p->lifeTime);
+	p->currentColor[B] = m_tEmitter.startColor[B] + (m_tEmitter.endColor[B] - m_tEmitter.startColor[B]) * (p->elapsedTime/p->lifeTime);
+	p->currentColor[A] = m_tEmitter.startColor[A] + (m_tEmitter.endColor[A] - m_tEmitter.startColor[A]) * (p->elapsedTime/p->lifeTime);
+	p->currentSize = m_tEmitter.beginSize + (m_tEmitter.endSize - m_tEmitter.beginSize) * (p->elapsedTime/p->lifeTime);
+	
+	return YES;
+}
+
+-(void)UpdateEmitter
+{
+	m_tEmitter.numParticles = m_nNumParticles;
+	m_tEmitter.acceleration[X] = m_fParAccelX;
+	m_tEmitter.acceleration[Y] = m_fParAccelY;
+	m_tEmitter.beginSize = m_fParSizeBegin;
+	m_tEmitter.endSize = m_fParSizeEnd;
+	m_tEmitter.directionBegin = m_fEmDirBegin;
+	m_tEmitter.directionEnd = m_fEmDirEnd;
+	m_tEmitter.startColor[R] = m_fRedStart;
+	m_tEmitter.startColor[G] = m_fGreenStart;
+	m_tEmitter.startColor[B] = m_fBlueStart;
+	m_tEmitter.startColor[A] = m_fAlphaStart;
+	m_tEmitter.endColor[R] = m_fRedEnd;
+	m_tEmitter.endColor[G] = m_fGreenEnd;
+	m_tEmitter.endColor[B] = m_fBlueEnd;
+	m_tEmitter.endColor[A] = m_fAlphaEnd;
+	m_tEmitter.minLifetime = m_fParLifeMin;
+	m_tEmitter.maxLifetime = m_fParLifeMax;
+	m_tEmitter.numParticles = m_nNumParticles;
+	m_tEmitter.position[X] = m_fEmPosX;
+	m_tEmitter.position[Y] = m_fEmPosY;
+	m_tEmitter.size.width = m_fEmSizeX;
+	m_tEmitter.size.height = m_fEmSizeY;
+	m_tEmitter.speed = m_fParSpeed;
+	m_tEmitter.emitterSpeed = m_fParSpeed;
+	m_tEmitter.rotationBegin = m_fParRotationBegin;
+	m_tEmitter.rotationEnd = m_fParRotationEnd;	
+}
+
+-(void) dealloc
+{
+	[m_pTM release];
+	[texture dealloc];
+	delete m_vctParticles;
+	
+	[super dealloc];
+}
+
+
+
+@end

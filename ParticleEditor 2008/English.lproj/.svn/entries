@@ -1,0 +1,53 @@
+8
+
+dir
+251
+svn+ssh://main@stratosvn.kicks-ass.net/Library/Subversion/Repository/LocoMotives/trunk/ParticleEditor/English.lproj
+svn+ssh://main@stratosvn.kicks-ass.net/Library/Subversion/Repository/LocoMotives
+
+
+
+2008-12-04T19:47:30.039750Z
+250
+main
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5750fb05-e383-4d6a-8766-e77265e4f7a2
+
+InfoPlist.strings
+file
+
+
+
+
+2008-12-04T19:48:59.000000Z
+51ef59b60e5b41b91519cc662a9fe886
+2008-12-04T19:47:30.039750Z
+250
+main
+has-props
+
+MainMenu.xib
+file
+322
+
+
+
+2008-12-11T20:06:31.000000Z
+0c3bb65bbcde687a2d02b400ed0e72cc
+2008-12-11T20:06:49.134828Z
+322
+main
+

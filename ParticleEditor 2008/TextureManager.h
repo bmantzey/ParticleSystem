@@ -1,0 +1,114 @@
+//
+//  TextureManager.h
+//  LocoMotives
+//
+//  Created by Brandon Mantzey on 11/4/08.
+// 
+//	This class is NOT thread safe.
+//	Singleton class.
+//  
+//  Description:
+//		This class is designed to manage the textures that are loaded into OpenGL.
+//  The textures are loaded, passed to OpenGL, which retains its own copy in graphics memory
+//  and is then released.  
+//		Use the path name for the identifier.
+//
+
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#import "Math3d.h"
+
+#define TEX_MEMORY_MAX 167772160 
+
+
+enum TEX_ERROR { ERR_NONE, ERR_NON_POW2, ERR_ALREADY_LOADED, ERR_NOT_LOADED, ERR_NOT_FOUND, ERR_LOW_MEMORY, ERR_UNSUPPORTED_DEPTH,
+				 ERR_RLE_FORMAT, ERR_COUNT };
+
+#pragma pack(1)
+typedef struct
+	{
+		GLbyte	identsize;              // Size of ID field that follows header (0)
+		GLbyte	colorMapType;           // 0 = None, 1 = paletted
+		GLbyte	imageType;              // 0 = none, 1 = indexed, 2 = rgb, 3 = grey, +8=rle
+		unsigned short	colorMapStart;          // First colour map entry
+		unsigned short	colorMapLength;         // Number of colors
+		unsigned char 	colorMapBits;   // bits per palette entry
+		unsigned short	xstart;                 // image x origin
+		unsigned short	ystart;                 // image y origin
+		unsigned short	width;                  // width in pixels
+		unsigned short	height;                 // height in pixels
+		GLbyte	bits;                   // bits per pixel (8 16, 24, 32)
+		GLbyte	descriptor;             // image descriptor
+	} TGAHEADER;
+#pragma pack(8)
+
+@interface TextureObject : NSObject
+{
+	size_t							m_nWidth;					// The width of the texture.
+	size_t							m_nHeight;					// The Height of the texture.
+	GLuint							m_glIndex;
+	int								m_nRetCount;
+}
+
+@property (assign) size_t m_nWidth;
+@property (assign) size_t m_nHeight;
+@property (assign) int m_nRetCount;
+@property (readonly) GLuint m_glIndex;
+
+
+-(id)initWithData:(size_t)width :(size_t)height :(GLuint)index;
+
+@end
+
+@interface TextureManager : NSObject
+{
+@private
+	NSMutableDictionary *TextureObjects; 
+	unsigned int memoryUsed;
+	
+@public
+	// Draw properties
+	CGRect							section;
+	M3DVector4f						color;
+	M3DVector3f						alphaOutColor;
+	float							xScale;
+	float							yScale;
+	float							xScalePoint;
+	float							yScalePoint;
+	float							xRot;
+	float							yRot;
+	float							rotAngle;
+	float							xPos;
+	float							yPos;
+}
+
+@property (assign) CGRect section;
+@property (assign) float  xScale;
+@property (assign) float  yScale;
+@property (assign) float  xScalePoint;
+@property (assign) float  yScalePoint;
+@property (assign) float  xRot;
+@property (assign) float  yRot;
+@property (assign) float  rotAngle;
+@property (assign) float  xPos;
+@property (assign) float  yPos;
+
++(TextureManager*)getInstance;
+
+// TODO: Get that color key working.
+// Loads the texture if it hasn't been loaded yet.
+-(int) LoadTexture:(NSString*)FileName;
+-(int) LoadTexture:(NSString*)FileName
+				  :(M3DVector3f)colorKey;
+// Returns NO if the texture was not found.  Returns YES if it was released.
+-(BOOL) ReleaseTexture:(NSString*)iden;
+-(size_t) GetTextureWidth:(NSString*)iden;
+-(size_t) GetTextureHeight:(NSString*)iden;
+-(TextureObject*) GetTextureObject:(NSString*)iden;
+
+-(int) Draw:(NSString*)iden;
+-(void) SetColor:(M3DVector4f)newColor;
+-(void) SetAlphaColor:(M3DVector3f)alphaOut;
+-(GLuint) GetTexID:(NSString*)texture;
+
+@end

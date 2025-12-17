@@ -1,0 +1,152 @@
+//
+//  ParticleEngine.h
+//  ParticleEditor
+//
+//  Created by Brandon Mantzey on 12/4/08.
+//  Copyright 2008 Stratogon. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+#include "ld_vector.h"
+#import "Math3d.h"
+#import "CPhysicsTimer.h"
+#import "TextureManager.h"
+
+#define			RAND_FLOAT(min,max)		(((rand()/(double)RAND_MAX)*((max)-(min)))+(min))
+#define			RAND_INT(min, max)       (rand()%(max-min)+min)
+
+// For consistent dereferenceing of color arrays and position arrays.
+#define R 0
+#define G 1
+#define B 2
+#define A 3
+#define X 0
+#define Y 1
+#define BEGIN 0
+#define END 1
+#define LOW 0
+#define HIGH 1
+
+struct tParticle
+{
+	M3DVector2d position;
+	M3DVector2d currentVelocity;
+	BOOL isAlive;
+	M3DVector4d currentColor;
+	double currentSize;
+	double elapsedTime;
+	double lifeTime;
+	double currentRotation;
+	double endRotation;
+};
+
+struct tEmitter
+{
+	M3DVector2d acceleration;
+	double beginSize;
+	double endSize;
+	double directionBegin;
+	double directionEnd;
+	M3DVector4d startColor;
+	M3DVector4d endColor;
+	double minLifetime;
+	double maxLifetime;
+	unsigned int numParticles;
+	M3DVector2d position;
+	CGSize size;
+	double speed;
+	double emitterSpeed;
+	double rotationBegin;
+	double rotationEnd;
+	BOOL m_bRunLimited;
+	double m_fRunTime;
+};
+
+@interface ParticleEngine : NSObject
+{
+	// TODO: Fix the warning about the user-defined constructor.
+	
+	// I don't think this class needs to be a Singleton.
+	// It would make more sense to instantiate another instance per particle system
+	TextureManager *m_pTM; // This one is a singleton.
+	NSString *texture;
+	tEmitter m_tEmitter;
+	ld_vector<tParticle> *m_vctParticles;
+	
+	double			m_fEmPosX, m_fEmPosY;
+	double			m_fEmDirBegin, m_fEmDirEnd;
+	unsigned int	m_fEmSizeX, m_fEmSizeY;
+	BOOL			m_bRandDirection;
+	BOOL			m_bRandPos;
+	BOOL			m_bRandEmSize;
+	double			m_fParAccelX, m_fParAccelY;
+	double			m_fParLifeMin, m_fParLifeMax;
+	double			m_fParRotationBegin, m_fParRotationEnd;
+	double			m_fParSizeBegin, m_fParSizeEnd;
+	double			m_fParSpeed;
+	unsigned int	m_nNumParticles;
+	BOOL			m_bRandAccel;
+	BOOL			m_bRandLifetime;
+	BOOL			m_bRandParSize;
+	BOOL			m_bRandParNum;
+	BOOL			m_bRandRot;
+	BOOL			m_bRandSpeed;
+	double			m_fRedStart, m_fGreenStart, m_fBlueStart, m_fAlphaStart;
+	double			m_fRedEnd, m_fGreenEnd, m_fBlueEnd, m_fAlphaEnd;
+	BOOL			m_bRandStartColor;
+	BOOL			m_bRandEndColor;
+	double			m_fRunTime;
+	BOOL			m_bRunLimited;	
+	
+	double			m_fTimer;
+}
+
+@property (assign) unsigned int m_nNumParticles;
+@property (assign) double m_fEmPosX, m_fEmPosY;
+@property (assign) double m_fEmDirBegin, m_fEmDirEnd;
+@property (assign) unsigned int m_fEmSizeX, m_fEmSizeY;
+@property (assign) BOOL m_bRandDirection;
+@property (assign) BOOL m_bRandPos;
+@property (assign) BOOL m_bRandEmSize;
+@property (assign) double m_fParAccelX, m_fParAccelY;
+@property (assign) double m_fParLifeMin, m_fParLifeMax;
+@property (assign) double m_fParRotationBegin, m_fParRotationEnd;
+@property (assign) double m_fParSizeBegin, m_fParSizeEnd;
+@property (assign) double m_fParSpeed;
+@property (assign) BOOL m_bRandAccel;
+@property (assign) BOOL m_bRandLifetime;
+@property (assign) BOOL m_bRandParSize;
+@property (assign) BOOL m_bRandParNum;
+@property (assign) BOOL m_bRandRot;
+@property (assign) BOOL m_bRandSpeed;
+@property (assign) double m_fRedStart, m_fGreenStart, m_fBlueStart, m_fAlphaStart;
+@property (assign) double m_fRedEnd, m_fGreenEnd, m_fBlueEnd, m_fAlphaEnd;
+@property (assign) BOOL m_bRandStartColor;
+@property (assign) BOOL m_bRandEndColor;	
+@property (assign) double m_fRunTime;
+@property (assign) BOOL m_bRunLimited;
+@property (assign) tEmitter m_tEmitter;
+
+//TODO:  This is a very rough port.  All of these functions need to be
+// 1) Checked closely for completeness
+// 2) Ensure all these functions are necessary
+// 3) Synthesized
+// 4) Consider using NSMutableArray rather than the ld_vector for Objective-C sexiness.
+-(id)initWithTexture:(NSString*)particleTexture;
+
+-(void)RenderParticleSystem;
+-(void)LoadParticleSystem:(NSString*)pebPath
+						 :(NSString*)texturePath;
+-(void)Update:(double)timer;
+-(void)AddParticle:(tParticle*)p;
+-(BOOL)UpdateParticle:(tParticle*)p;
+-(void)UpdateEmitter;
+
+-(void)SetRunTime:(double)timeToRun;
+-(void)ResumeRun;
+
+-(void)ChangeTexture:(NSString*)newTexture;
+
+
+@end

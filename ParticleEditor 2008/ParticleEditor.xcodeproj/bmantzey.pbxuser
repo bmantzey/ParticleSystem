@@ -1,0 +1,903 @@
+// !$*UTF8*$!
+{
+	089C165DFE840E0CC02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1218, 687}}";
+			sepNavSelRange = "{45, 0}";
+			sepNavVisRange = "{0, 45}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = C496161B0EE8590600F32F6A /* ParticleEditor */;
+		activeSDKPreference = macosx10.6;
+		activeTarget = 8D1107260486CEB800E47090 /* ParticleEditor */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* ParticleEditor */,
+		);
+		breakpoints = (
+			C49DA06D0EEB27F8001A7DA6 /* TextureManager.m:32 */,
+			C49DA0A00EEB29ED001A7DA6 /* TextureManager.mm:160 */,
+			C49DA2990EEB3FC7001A7DA6 /* TextureManager.mm:61 */,
+			C4B89F690EEF0F7A005BAEDA /* ParticleEngine.mm:96 */,
+			C4ACA6DA0EF04E9C003773AD /* ParticleView.mm:296 */,
+			C4AF27D60EF17324004CBD7F /* ParticleView.mm:138 */,
+			C4AF28380EF178A1004CBD7F /* ParticleView.mm:151 */,
+			C4AF29200EF18AC2004CBD7F /* ParticleEngine.mm:212 */,
+		);
+		codeSenseManager = C496162A0EE8590D00F32F6A /* Code sense */;
+		executables = (
+			C496161B0EE8590600F32F6A /* ParticleEditor */,
+		);
+		expressions = (
+			NSImage,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					784,
+					446,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					1066,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1040,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXSymbolsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXSymbolsDataSource_SymbolNameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					16,
+					200,
+					50,
+					1118.20849609375,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXSymbolsDataSource_SymbolTypeIconID,
+					PBXSymbolsDataSource_SymbolNameID,
+					PBXSymbolsDataSource_SymbolTypeID,
+					PBXSymbolsDataSource_ReferenceNameID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					1016,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1000,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 299711720;
+			PBXWorkspaceStateSaveDate = 299711720;
+		};
+		perUserProjectItems = {
+			C40071F111DD880900B9EC2A /* PBXTextBookmark */ = C40071F111DD880900B9EC2A /* PBXTextBookmark */;
+			C40071F211DD880900B9EC2A /* PBXTextBookmark */ = C40071F211DD880900B9EC2A /* PBXTextBookmark */;
+			C40071F311DD880900B9EC2A /* PBXTextBookmark */ = C40071F311DD880900B9EC2A /* PBXTextBookmark */;
+			C41207D50FD1ABFD00FDE7A6 /* PBXBookmark */ = C41207D50FD1ABFD00FDE7A6 /* PBXBookmark */;
+			C4319BC60F9F892800BD9655 /* PBXTextBookmark */ = C4319BC60F9F892800BD9655 /* PBXTextBookmark */;
+			C44210FD0EEB5C4000E30AAE /* PBXTextBookmark */ = C44210FD0EEB5C4000E30AAE /* PBXTextBookmark */;
+			C44212910EEB83B300E30AAE /* PBXTextBookmark */ = C44212910EEB83B300E30AAE /* PBXTextBookmark */;
+			C44213180EEB866400E30AAE /* PBXTextBookmark */ = C44213180EEB866400E30AAE /* PBXTextBookmark */;
+			C44214DB0EEBADEC00E30AAE /* PBXTextBookmark */ = C44214DB0EEBADEC00E30AAE /* PBXTextBookmark */;
+			C469136D0EE9B8D1005D6AEB /* PBXTextBookmark */ = C469136D0EE9B8D1005D6AEB /* PBXTextBookmark */;
+			C4697D6D0EF306F50011CE2C /* PBXTextBookmark */ = C4697D6D0EF306F50011CE2C /* PBXTextBookmark */;
+			C4697D830EF3070F0011CE2C /* PBXTextBookmark */ = C4697D830EF3070F0011CE2C /* PBXTextBookmark */;
+			C49CAC260EEC9BEE0007AED9 /* PBXTextBookmark */ = C49CAC260EEC9BEE0007AED9 /* PBXTextBookmark */;
+			C49D9EC60EEAFAF6001A7DA6 /* PBXTextBookmark */ = C49D9EC60EEAFAF6001A7DA6 /* PBXTextBookmark */;
+			C49D9FE40EEB1B92001A7DA6 /* PBXTextBookmark */ = C49D9FE40EEB1B92001A7DA6 /* PBXTextBookmark */;
+			C49DA2270EEB3DA5001A7DA6 /* PBXTextBookmark */ = C49DA2270EEB3DA5001A7DA6 /* PBXTextBookmark */;
+			C49DA22D0EEB3DA5001A7DA6 /* PBXTextBookmark */ = C49DA22D0EEB3DA5001A7DA6 /* PBXTextBookmark */;
+			C49DA28F0EEB3FBD001A7DA6 /* PBXTextBookmark */ = C49DA28F0EEB3FBD001A7DA6 /* PBXTextBookmark */;
+			C4ACA60A0EF041A9003773AD /* PBXTextBookmark */ = C4ACA60A0EF041A9003773AD /* PBXTextBookmark */;
+			C4ACA60B0EF041A9003773AD /* PBXTextBookmark */ = C4ACA60B0EF041A9003773AD /* PBXTextBookmark */;
+			C4ACAAE70EF0926C003773AD /* PBXTextBookmark */ = C4ACAAE70EF0926C003773AD /* PBXTextBookmark */;
+			C4AF29940EF19ADD004CBD7F /* PlistBookmark */ = C4AF29940EF19ADD004CBD7F /* PlistBookmark */;
+			C4AF2A910EF1AB83004CBD7F /* PBXTextBookmark */ = C4AF2A910EF1AB83004CBD7F /* PBXTextBookmark */;
+			C4B89CAB0EEEDC3D005BAEDA /* PBXTextBookmark */ = C4B89CAB0EEEDC3D005BAEDA /* PBXTextBookmark */;
+			C4B89CF00EEEE36E005BAEDA /* PBXTextBookmark */ = C4B89CF00EEEE36E005BAEDA /* PBXTextBookmark */;
+			C4B8A0910EEF2B8A005BAEDA /* PBXTextBookmark */ = C4B8A0910EEF2B8A005BAEDA /* PBXTextBookmark */;
+			C4CDBABC0FCC851A004D7B05 /* PBXTextBookmark */ = C4CDBABC0FCC851A004D7B05 /* PBXTextBookmark */;
+			C4DB55400FA758EB00D6BFEB /* PBXTextBookmark */ = C4DB55400FA758EB00D6BFEB /* PBXTextBookmark */;
+			C4DB558F0FA75E4B00D6BFEB /* PBXTextBookmark */ = C4DB558F0FA75E4B00D6BFEB /* PBXTextBookmark */;
+		};
+		sourceControlManager = C49616290EE8590D00F32F6A /* Source Control */;
+		userBuildSettings = {
+			OBJROOT = "$(SYMROOT)";
+			SYMROOT = /Users/bmantzey/Documents/Stratogon/Project/Builds/ParticleEditor;
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1124, 803}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 263}";
+		};
+	};
+	8D1107260486CEB800E47090 /* ParticleEditor */ = {
+		activeExec = 0;
+		executables = (
+			C496161B0EE8590600F32F6A /* ParticleEditor */,
+		);
+	};
+	C40071F111DD880900B9EC2A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C46C696A0EEA4C09004E93BC /* TextureManager.h */;
+		name = "TextureManager.h: 75";
+		rLen = 0;
+		rLoc = 2235;
+		rType = 0;
+		vrLen = 456;
+		vrLoc = 1990;
+	};
+	C40071F211DD880900B9EC2A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49616950EE8600300F32F6A /* ParticleView.mm */;
+		rLen = 13;
+		rLoc = 14865;
+		rType = 0;
+	};
+	C40071F311DD880900B9EC2A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49616950EE8600300F32F6A /* ParticleView.mm */;
+		name = "ParticleView.mm: 413";
+		rLen = 13;
+		rLoc = 14865;
+		rType = 0;
+		vrLen = 739;
+		vrLoc = 14461;
+	};
+	C41207D50FD1ABFD00FDE7A6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = C497FB450FCD0C89003F74C4 /* C#SS.tiff */;
+	};
+	C4319BC60F9F892800BD9655 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C46914650EE9F649005D6AEB /* ParticleView.h */;
+		name = "ParticleView.h: 65";
+		rLen = 83;
+		rLoc = 1609;
+		rType = 0;
+		vrLen = 641;
+		vrLoc = 1225;
+	};
+	C44210F50EEB493B00E30AAE /* TextureManager.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1218, 7657}}";
+			sepNavSelRange = "{8562, 0}";
+			sepNavVisRange = "{7836, 1354}";
+			sepNavWindowFrame = "{{368, 75}, {1312, 953}}";
+		};
+	};
+	C44210FD0EEB5C4000E30AAE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	C442110B0EEB5C4000E30AAE /* project.pbxproj */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.pbxproject;
+		name = project.pbxproj;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/ParticleEditor.xcodeproj/project.pbxproj;
+		sourceTree = "<absolute>";
+	};
+	C44212910EEB83B300E30AAE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C44212920EEB83B300E30AAE /* cssmconfig.h */;
+		name = "cssmconfig.h: 72";
+		rLen = 7;
+		rLoc = 1928;
+		rType = 0;
+		vrLen = 1464;
+		vrLoc = 0;
+	};
+	C44212920EEB83B300E30AAE /* cssmconfig.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = cssmconfig.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Security.framework/Versions/A/Headers/cssmconfig.h;
+		sourceTree = "<absolute>";
+	};
+	C44213180EEB866400E30AAE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C44213190EEB866400E30AAE /* gl.h */;
+		name = "gl.h: 1258";
+		rLen = 49;
+		rLoc = 43150;
+		rType = 0;
+		vrLen = 1953;
+		vrLoc = 42170;
+	};
+	C44213190EEB866400E30AAE /* gl.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = gl.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/gl.h;
+		sourceTree = "<absolute>";
+	};
+	C44214DB0EEBADEC00E30AAE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C46C69670EEA4BEB004E93BC /* Math3d.h */;
+		name = "Math3d.h: 15";
+		rLen = 35;
+		rLoc = 247;
+		rType = 0;
+		vrLen = 1564;
+		vrLoc = 0;
+	};
+	C469136D0EE9B8D1005D6AEB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C469136E0EE9B8D1005D6AEB /* NSBox.h */;
+		name = "NSBox.h: 34";
+		rLen = 0;
+		rLoc = 841;
+		rType = 0;
+		vrLen = 1397;
+		vrLoc = 419;
+	};
+	C469136E0EE9B8D1005D6AEB /* NSBox.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSBox.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/AppKit.framework/Versions/C/Headers/NSBox.h;
+		sourceTree = "<absolute>";
+	};
+	C46914650EE9F649005D6AEB /* ParticleView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = ParticleView.h;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/ParticleView.h;
+		sourceTree = "<absolute>";
+	};
+	C469157F0EEA07B9005D6AEB /* bmantzey.pbxuser */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text;
+		name = bmantzey.pbxuser;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/ParticleEditor.xcodeproj/bmantzey.pbxuser;
+		sourceTree = "<absolute>";
+	};
+	C4697D6D0EF306F50011CE2C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C4B89DE00EEEEE9D005BAEDA /* TextureManager.m */;
+		name = "TextureManager.m: 344";
+		rLen = 0;
+		rLoc = 8562;
+		rType = 0;
+		vrLen = 1354;
+		vrLoc = 7836;
+	};
+	C4697D830EF3070F0011CE2C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C469157F0EEA07B9005D6AEB /* bmantzey.pbxuser */;
+		name = "bmantzey.pbxuser: 1195";
+		rLen = 0;
+		rLoc = 35808;
+		rType = 0;
+		vrLen = 1410;
+		vrLoc = 511;
+	};
+	C46C69670EEA4BEB004E93BC /* Math3d.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {944, 11780}}";
+			sepNavSelRange = "{247, 35}";
+			sepNavVisRange = "{0, 1564}";
+		};
+	};
+	C46C69680EEA4BEB004E93BC /* Math3d.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1182, 21318}}";
+			sepNavSelRange = "{158, 0}";
+			sepNavVisRange = "{0, 801}";
+		};
+	};
+	C46C696A0EEA4C09004E93BC /* TextureManager.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1218, 2204}}";
+			sepNavSelRange = "{2235, 0}";
+			sepNavVisRange = "{1990, 456}";
+		};
+	};
+	C46C696B0EEA4C09004E93BC /* TextureManager.mm */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = TextureManager.mm;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/TextureManager.mm;
+		sourceTree = "<absolute>";
+	};
+	C46C696D0EEA4CB5004E93BC /* CPhysicsTimer.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1356, 855}}";
+			sepNavSelRange = "{284, 0}";
+			sepNavVisRange = "{86, 1029}";
+		};
+	};
+	C46C696E0EEA4CB5004E93BC /* CPhysicsTimer.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1356, 2014}}";
+			sepNavSelRange = "{1575, 0}";
+			sepNavVisRange = "{1213, 875}";
+		};
+	};
+	C46C69740EEA4F81004E93BC /* ParticleEngine.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = ParticleEngine.h;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/ParticleEngine.h;
+		sourceTree = "<absolute>";
+	};
+	C496161B0EE8590600F32F6A /* ParticleEditor */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = ParticleEditor;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+			"dataRefType-OSType--[TextureManager(Private) LoadTexturePrivate:::]" = 5;
+		};
+	};
+	C49616290EE8590D00F32F6A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = Stratosvn;
+			repositoryNamesForRoots = {
+				"" = Stratosvn;
+			};
+		};
+	};
+	C496162A0EE8590D00F32F6A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	C49616420EE85AD600F32F6A /* ld_vector.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1062, 9595}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1666}";
+		};
+	};
+	C496165A0EE85C7E00F32F6A /* ParticleEngine.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1218, 3249}}";
+			sepNavSelRange = "{831, 16}";
+			sepNavVisRange = "{742, 829}";
+		};
+	};
+	C496165B0EE85C7E00F32F6A /* ParticleEngine.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1218, 5434}}";
+			sepNavSelRange = "{3595, 0}";
+			sepNavVisRange = "{3123, 782}";
+			sepNavWindowFrame = "{{15, 121}, {1312, 1052}}";
+		};
+	};
+	C49616950EE8600300F32F6A /* ParticleView.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {822, 12388}}";
+			sepNavSelRange = "{14865, 13}";
+			sepNavVisRange = "{14415, 823}";
+			sepNavWindowFrame = "{{15, 75}, {1312, 953}}";
+		};
+	};
+	C49616960EE8600300F32F6A /* ParticleView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1356, 1235}}";
+			sepNavSelRange = "{1294, 0}";
+			sepNavVisRange = "{687, 725}";
+		};
+	};
+	C497FB450FCD0C89003F74C4 /* C#SS.tiff */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.tiff;
+		name = "C#SS.tiff";
+		path = "/Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/C#SS.tiff";
+		sourceTree = "<absolute>";
+	};
+	C49CAB3B0EEC58550007AED9 /* stdio.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = stdio.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/usr/include/stdio.h;
+		sourceTree = "<absolute>";
+	};
+	C49CAB4E0EEC58B60007AED9 /* ld_vector.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = ld_vector.h;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/ld_vector.h;
+		sourceTree = "<absolute>";
+	};
+	C49CAC260EEC9BEE0007AED9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49CAB3B0EEC58550007AED9 /* stdio.h */;
+		name = "stdio.h: 281";
+		rLen = 27;
+		rLoc = 10376;
+		rType = 0;
+		vrLen = 1957;
+		vrLoc = 9617;
+	};
+	C49D9EC60EEAFAF6001A7DA6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49D9EC70EEAFAF6001A7DA6 /* CGImage.h */;
+		name = "CGImage.h: 9";
+		rLen = 0;
+		rLoc = 166;
+		rType = 0;
+		vrLen = 1397;
+		vrLoc = 0;
+	};
+	C49D9EC70EEAFAF6001A7DA6 /* CGImage.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CGImage.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Headers/CGImage.h;
+		sourceTree = "<absolute>";
+	};
+	C49D9FE40EEB1B92001A7DA6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49D9FE50EEB1B92001A7DA6 /* MacTypes.h */;
+		name = "MacTypes.h: 218";
+		rLen = 45;
+		rLoc = 7171;
+		rType = 0;
+		vrLen = 1540;
+		vrLoc = 6079;
+	};
+	C49D9FE50EEB1B92001A7DA6 /* MacTypes.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = MacTypes.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/Headers/MacTypes.h;
+		sourceTree = "<absolute>";
+	};
+	C49DA0300EEB23FE001A7DA6 /* TextureManager.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = TextureManager.m;
+		path = ../TextureManager.mm;
+		sourceTree = "<group>";
+	};
+	C49DA06D0EEB27F8001A7DA6 /* TextureManager.m:32 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C49DA0300EEB23FE001A7DA6 /* TextureManager.m */;
+		functionName = "-LoadTexturePrivate:::";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 32;
+		location = ParticleEditor;
+		modificationTime = 299730446.064351;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C49DA0A00EEB29ED001A7DA6 /* TextureManager.mm:160 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C46C696B0EEA4C09004E93BC /* TextureManager.mm */;
+		functionName = "-LoadTexturePrivate:::";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 160;
+		location = ParticleEditor;
+		modificationTime = 299730446.064381;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C49DA2140EEB3C77001A7DA6 /* glee.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = glee.h;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/GLSDK/glee.h;
+		sourceTree = "<absolute>";
+	};
+	C49DA2220EEB3D89001A7DA6 /* gltools.cpp */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = gltools.cpp;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/GLSDK/gltools.cpp;
+		sourceTree = "<absolute>";
+	};
+	C49DA2270EEB3DA5001A7DA6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C46C69680EEA4BEB004E93BC /* Math3d.m */;
+		name = "Math3d.m: 12";
+		rLen = 0;
+		rLoc = 158;
+		rType = 0;
+		vrLen = 801;
+		vrLoc = 0;
+	};
+	C49DA22D0EEB3DA5001A7DA6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49DA2140EEB3C77001A7DA6 /* glee.h */;
+		name = "glee.h: 40";
+		rLen = 37;
+		rLoc = 1751;
+		rType = 0;
+		vrLen = 1817;
+		vrLoc = 0;
+	};
+	C49DA28F0EEB3FBD001A7DA6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49DA2220EEB3D89001A7DA6 /* gltools.cpp */;
+		name = "gltools.cpp: 328";
+		rLen = 0;
+		rLoc = 9631;
+		rType = 0;
+		vrLen = 1320;
+		vrLoc = 9305;
+	};
+	C49DA2990EEB3FC7001A7DA6 /* TextureManager.mm:61 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C46C696B0EEA4C09004E93BC /* TextureManager.mm */;
+		functionName = "-LoadTexturePrivate:::";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 61;
+		location = ParticleEditor;
+		modificationTime = 299730446.06441;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C4ACA5890EF03950003773AD /* colorWellController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1356, 677}}";
+			sepNavSelRange = "{113, 0}";
+			sepNavVisRange = "{0, 119}";
+		};
+	};
+	C4ACA58A0EF03950003773AD /* colorWellController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1356, 677}}";
+			sepNavSelRange = "{200, 0}";
+			sepNavVisRange = "{0, 270}";
+		};
+	};
+	C4ACA60A0EF041A9003773AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C4ACA5890EF03950003773AD /* colorWellController.h */;
+		name = "colorWellController.h: 8";
+		rLen = 0;
+		rLoc = 113;
+		rType = 0;
+		vrLen = 119;
+		vrLoc = 0;
+	};
+	C4ACA60B0EF041A9003773AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C4ACA58A0EF03950003773AD /* colorWellController.m */;
+		name = "colorWellController.m: 17";
+		rLen = 0;
+		rLoc = 200;
+		rType = 0;
+		vrLen = 270;
+		vrLoc = 0;
+	};
+	C4ACA6DA0EF04E9C003773AD /* ParticleView.mm:296 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C49616950EE8600300F32F6A /* ParticleView.mm */;
+		functionName = "-openPanelDidEndImport:returnCode:contextInfo:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 296;
+		location = ParticleEditor;
+		modificationTime = 299730446.064495;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C4ACAAE70EF0926C003773AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C46C696E0EEA4CB5004E93BC /* CPhysicsTimer.m */;
+		name = "CPhysicsTimer.m: 78";
+		rLen = 0;
+		rLoc = 1575;
+		rType = 0;
+		vrLen = 875;
+		vrLoc = 1213;
+	};
+	C4AF27D60EF17324004CBD7F /* ParticleView.mm:138 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C49616950EE8600300F32F6A /* ParticleView.mm */;
+		functionName = "-setEmitterDuration:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 138;
+		location = ParticleEditor;
+		modificationTime = 299730446.064773;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C4AF28380EF178A1004CBD7F /* ParticleView.mm:151 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C49616950EE8600300F32F6A /* ParticleView.mm */;
+		functionName = "-setEmitterRun:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 151;
+		location = ParticleEditor;
+		modificationTime = 299730446.064932;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C4AF28F50EF18998004CBD7F /* ParticleEngine.mm */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = ParticleEngine.mm;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/ParticleEngine.mm;
+		sourceTree = "<group>";
+	};
+	C4AF29200EF18AC2004CBD7F /* ParticleEngine.mm:212 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C496165B0EE85C7E00F32F6A /* ParticleEngine.mm */;
+		functionName = "-UpdateParticle:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 212;
+		location = ParticleEditor;
+		modificationTime = 299730446.065093;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C4AF29940EF19ADD004CBD7F /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	C4AF2A910EF1AB83004CBD7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 089C165DFE840E0CC02AAC07 /* English */;
+		name = "InfoPlist.strings: 3";
+		rLen = 0;
+		rLoc = 45;
+		rType = 0;
+		vrLen = 45;
+		vrLoc = 0;
+	};
+	C4B89CAB0EEEDC3D005BAEDA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C442110B0EEB5C4000E30AAE /* project.pbxproj */;
+		name = "project.pbxproj: 329";
+		rLen = 0;
+		rLoc = 15586;
+		rType = 0;
+		vrLen = 4487;
+		vrLoc = 0;
+	};
+	C4B89CF00EEEE36E005BAEDA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C46C696D0EEA4CB5004E93BC /* CPhysicsTimer.h */;
+		name = "CPhysicsTimer.h: 14";
+		rLen = 0;
+		rLoc = 284;
+		rType = 0;
+		vrLen = 1029;
+		vrLoc = 86;
+	};
+	C4B89DE00EEEEE9D005BAEDA /* TextureManager.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = TextureManager.m;
+		path = /Users/bmantzey/Documents/Stratogon/Tools/ParticleEditor/TextureManager.m;
+		sourceTree = "<absolute>";
+	};
+	C4B89F690EEF0F7A005BAEDA /* ParticleEngine.mm:96 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = C496165B0EE85C7E00F32F6A /* ParticleEngine.mm */;
+		functionName = "-RenderParticleSystem";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 96;
+		location = LocoMotives;
+		modificationTime = 299730446.064463;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	C4B8A0910EEF2B8A005BAEDA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C4B8A0920EEF2B8A005BAEDA /* NSFormatter.h */;
+		name = "NSFormatter.h: 12";
+		rLen = 56;
+		rLoc = 209;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 0;
+	};
+	C4B8A0920EEF2B8A005BAEDA /* NSFormatter.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSFormatter.h;
+		path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSFormatter.h;
+		sourceTree = "<absolute>";
+	};
+	C4CDBABC0FCC851A004D7B05 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C4AF28F50EF18998004CBD7F /* ParticleEngine.mm */;
+		name = "ParticleEngine.mm: 133";
+		rLen = 0;
+		rLoc = 3595;
+		rType = 0;
+		vrLen = 444;
+		vrLoc = 3320;
+	};
+	C4DB55400FA758EB00D6BFEB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C49CAB4E0EEC58B60007AED9 /* ld_vector.h */;
+		name = "ld_vector.h: 183";
+		rLen = 2;
+		rLoc = 7134;
+		rType = 0;
+		vrLen = 1259;
+		vrLoc = 6225;
+	};
+	C4DB558F0FA75E4B00D6BFEB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C46C69740EEA4F81004E93BC /* ParticleEngine.h */;
+		name = "ParticleEngine.h: 63";
+		rLen = 0;
+		rLoc = 1221;
+		rType = 0;
+		vrLen = 908;
+		vrLoc = 831;
+	};
+}

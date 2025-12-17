@@ -1,0 +1,112 @@
+//
+//  CPhysicsTimer.m
+//  TrainLoaded
+//
+//  Created by Brandon Mantzey on 10/22/08.
+//  Copyright 2008 Stratogon. All rights reserved.
+//
+
+#import "CPhysicsTimer.h"
+
+@interface CPhysicsTimer (Private)
+
+-(uint64_t) GetDeltaTimePrivate;
+-(uint64_t) GetTimePrivate;
+
+@end
+
+@implementation CPhysicsTimer (Private)
+
+-(uint64_t) GetDeltaTimePrivate
+{
+	return TimeDelta;
+}
+-(uint64_t) GetTimePrivate
+{
+	uint64_t time = mach_absolute_time();
+	return (time - TimeStart);
+}
+
+@end
+
+
+@implementation CPhysicsTimer
+
+@synthesize FPS;
+
+-(id)init
+{
+	self = [super init];
+	return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Use to initialize & to start timer.
+// All time calculations are calculated from game time at this point.
+///////////////////////////////////////////////////////////////////////////////
+-(void) Reset
+{
+	TimeStart = mach_absolute_time();
+	
+	FPS = 0;
+}
+///////////////////////////////////////////////////////////////////////////////
+// Use to update timer.
+// ONLY CALL ONCE PER FRAME!!!
+///////////////////////////////////////////////////////////////////////////////
+-(void) Update
+{
+	static int frames = 0;
+	static mach_timebase_info_data_t sTimebaseInfo;
+	
+	if(TimeLastFrame == 0)
+		TimeLastFrame = [self GetTimePrivate];
+	uint64_t timeNow = [self GetTimePrivate];
+	if(TimePrev == 0 || TimePrev == timeNow)
+		TimePrev = [self GetTimePrivate];
+
+	frames++;
+		
+	uint64_t diff = timeNow - TimePrev;
+	//double testMacro = NANO_TO_DOUBLE(diff);
+	
+	if(sTimebaseInfo.denom == 0)
+	{
+		mach_timebase_info(&sTimebaseInfo);
+	}
+	
+	ElapsedNano = diff * sTimebaseInfo.numer / sTimebaseInfo.denom;	
+	
+	// log how many frames since 1 second
+	if(NANO_TO_DOUBLE(ElapsedNano) > 1.0)
+	{
+		// This division is for precision but since divisions are expensive and we're representing it as an integer...
+		FPS = frames;// / (int)(NANO_TO_DOUBLE(ElapsedNano));  
+		frames = 0;
+		TimePrev = timeNow;
+	}
+	
+	// calculate delta time
+	TimeDelta = (timeNow - TimeLastFrame);
+	TimeLastFrame = timeNow;
+}
+-(double) GetTime
+{
+	uint64_t time = mach_absolute_time();
+	
+	uint64_t diff = time - TimeStart;
+	
+	return NANO_TO_DOUBLE(diff);
+}
+
+-(double) GetDeltaTime
+{
+	return NANO_TO_DOUBLE(TimeDelta);
+}
+
+-(void) dealloc
+{
+	[super dealloc];
+}
+
+@end

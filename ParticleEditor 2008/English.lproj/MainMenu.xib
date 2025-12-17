@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="1050" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <menu title="AMainMenu" systemMenu="main" id="29" userLabel="MainMenu">
+            <items>
+                <menuItem title="NewApplication" id="56">
+                    <menu key="submenu" title="NewApplication" systemMenu="apple" id="57">
+                        <items>
+                            <menuItem title="About NewApplication" id="58">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="143">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Services" id="131">
+                                <menu key="submenu" title="Services" systemMenu="services" id="130"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="144">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Hide NewApplication" keyEquivalent="h" id="134">
+                                <connections>
+                                    <action selector="hide:" target="-1" id="367"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Hide Others" keyEquivalent="h" id="145">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="hideOtherApplications:" target="-1" id="368"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show All" id="150">
+                                <connections>
+                                    <action selector="unhideAllApplications:" target="-1" id="370"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="149">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Quit NewApplication" keyEquivalent="q" id="136" userLabel="1111">
+                                <connections>
+                                    <action selector="terminate:" target="-3" id="449"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="File" id="83">
+                    <menu key="submenu" title="File" id="81">
+                        <items>
+                            <menuItem title="Import Binary..." keyEquivalent="O" id="683">
+                                <connections>
+                                    <action selector="showOpenPanel:" target="450" id="693"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Load Particle Texture..." keyEquivalent="o" id="685">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showOpenPanel:" target="450" id="696"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="79" userLabel="7">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Close" keyEquivalent="w" id="73" userLabel="1">
+                                <connections>
+                                    <action selector="performClose:" target="-1" id="193"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Export Binary..." keyEquivalent="s" id="112" userLabel="10">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showSavePanel:" target="450" id="695"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="View" id="295">
+                    <menu key="submenu" title="View" id="296">
+                        <items>
+                            <menuItem title="Change Background Color..." keyEquivalent="c" id="297">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="openColorWell:" target="699" id="702"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Window" id="19">
+                    <menu key="submenu" title="Window" systemMenu="window" id="24">
+                        <items>
+                            <menuItem title="Minimize" keyEquivalent="m" id="23">
+                                <connections>
+                                    <action selector="performMiniaturize:" target="-1" id="37"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom" id="239">
+                                <connections>
+                                    <action selector="performZoom:" target="-1" id="240"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="92">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Bring All to Front" id="5">
+                                <connections>
+                                    <action selector="arrangeInFront:" target="-1" id="39"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="139" y="154"/>
+        </menu>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="377" y="339" width="1332" height="651"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1049"/>
+            <view key="contentView" id="372">
+                <rect key="frame" x="0.0" y="0.0" width="1332" height="651"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <openGLView wantsLayer="YES" fixedFrame="YES" depthSize="16bit" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" wantsBestResolutionOpenGLSurface="YES" translatesAutoresizingMaskIntoConstraints="NO" id="450" customClass="ParticleView">
+                        <rect key="frame" x="20" y="20" width="781" height="611"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <outlet property="emDirection" destination="477" id="669"/>
+                            <outlet property="emDurTime" destination="704" id="724"/>
+                            <outlet property="emDuration" destination="714" id="722"/>
+                            <outlet property="emPosition" destination="453" id="670"/>
+                            <outlet property="emRunAgain" destination="740" id="743"/>
+                            <outlet property="emSize" destination="459" id="668"/>
+                            <outlet property="endColor" destination="613" id="648"/>
+                            <outlet property="endColorFloat" destination="758" id="778"/>
+                            <outlet property="parAccel" destination="520" id="671"/>
+                            <outlet property="parLife" destination="505" id="672"/>
+                            <outlet property="parNum" destination="497" id="673"/>
+                            <outlet property="parRotation" destination="550" id="675"/>
+                            <outlet property="parSize" destination="543" id="676"/>
+                            <outlet property="parSpeed" destination="513" id="674"/>
+                            <outlet property="randAccel" destination="532" id="659"/>
+                            <outlet property="randDirection" destination="485" id="662"/>
+                            <outlet property="randEmSize" destination="483" id="661"/>
+                            <outlet property="randEndColor" destination="631" id="653"/>
+                            <outlet property="randLifetime" destination="530" id="658"/>
+                            <outlet property="randParSize" destination="562" id="654"/>
+                            <outlet property="randParticles" destination="526" id="656"/>
+                            <outlet property="randPos" destination="481" id="660"/>
+                            <outlet property="randRot" destination="564" id="655"/>
+                            <outlet property="randSelectAll" destination="637" id="650"/>
+                            <outlet property="randSpeed" destination="528" id="657"/>
+                            <outlet property="randStartColor" destination="629" id="652"/>
+                            <outlet property="startColor" destination="597" id="647"/>
+                            <outlet property="startColorFloat" destination="752" id="777"/>
+                        </connections>
+                    </openGLView>
+                    <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Emitter Controls" translatesAutoresizingMaskIntoConstraints="NO" id="465">
+                        <rect key="frame" x="806" y="517" width="509" height="114"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="pVd-tr-uyP">
+                            <rect key="frame" x="0.0" y="0.0" width="509" height="102"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="453">
+                                    <rect key="frame" x="18" y="44" width="90" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="90" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="456">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" title="Pos X:" stringValue="380" placeholderString="380" id="454">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="457">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="781"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="1" title="Pos Y:" stringValue="305" placeholderString="305" id="455">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="458">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="611"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeEmitter:" target="450" id="489"/>
+                                    </connections>
+                                </form>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="459">
+                                    <rect key="frame" x="116" y="44" width="96" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="96" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="462">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Size X:" stringValue="25" placeholderString="25" id="460">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="463">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="1"/>
+                                                    <real key="maximum" value="781"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="Size Y:" stringValue="25" placeholderString="25" id="461">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" negativeFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="464">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="1"/>
+                                                    <real key="maximum" value="611"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeEmitter:" target="450" id="490"/>
+                                    </connections>
+                                </form>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="477">
+                                    <rect key="frame" x="220" y="44" width="113" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="113" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="480">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" title="Dir Begin:" stringValue="80" placeholderString="80" id="478">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="488">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="360"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="1" title="Dir End:" stringValue="100" placeholderString="100" id="479">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="487">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="360"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeEmitter:" target="450" id="491"/>
+                                    </connections>
+                                </form>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="481">
+                                    <rect key="frame" x="34" y="20" width="76" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandPos" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="482">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button tag="1" imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="483">
+                                    <rect key="frame" x="115" y="20" width="99" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandEmSize" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="484">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button tag="2" imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="485">
+                                    <rect key="frame" x="224" y="20" width="111" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandDirection" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="486">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="704">
+                                    <rect key="frame" x="395" y="74" width="75" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="5,000.0" placeholderString="5000.0" drawsBackground="YES" id="705">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="728">
+                                            <nil key="negativeInfinitySymbol"/>
+                                            <nil key="positiveInfinitySymbol"/>
+                                            <real key="minimum" value="0.0"/>
+                                            <real key="maximum" value="1e+21"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <action selector="setEmitterDuration:" target="450" id="737"/>
+                                    </connections>
+                                </textField>
+                                <button tag="3" imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="714">
+                                    <rect key="frame" x="339" y="76" width="50" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="Dur:" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="715">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="setEmitterDuration:" target="450" id="739"/>
+                                    </connections>
+                                </button>
+                                <button imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="740">
+                                    <rect key="frame" x="371" y="36" width="105" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Run Again" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="741">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="runAgain:" target="450" id="742"/>
+                                    </connections>
+                                </button>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="744">
+                                    <rect key="frame" x="475" y="76" width="23" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="745">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                        </view>
+                    </box>
+                    <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Particle Controls" translatesAutoresizingMaskIntoConstraints="NO" id="495">
+                        <rect key="frame" x="806" y="127" width="509" height="377"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="1u6-tf-RBR">
+                            <rect key="frame" x="0.0" y="0.0" width="509" height="365"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="497">
+                                    <rect key="frame" x="115" y="337" width="56" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="100" placeholderString="100" drawsBackground="YES" id="498">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="501">
+                                            <nil key="negativeInfinitySymbol"/>
+                                            <nil key="positiveInfinitySymbol"/>
+                                            <real key="minimum" value="1"/>
+                                            <real key="maximum" value="10000"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <action selector="changeParticles:" target="450" id="539"/>
+                                    </connections>
+                                </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="499">
+                                    <rect key="frame" x="15" y="339" width="95" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Num Particles:" id="500">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="505">
+                                    <rect key="frame" x="179" y="307" width="160" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="160" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="508">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" title="Lifetime Range:" stringValue="2,000" placeholderString="2000" id="506">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="516">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="10"/>
+                                                    <real key="maximum" value="10000"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="1" title="to:" stringValue="4,000" placeholderString="4000" id="507">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="517">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="10"/>
+                                                    <real key="maximum" value="10000"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeParticles:" target="450" id="541"/>
+                                    </connections>
+                                </form>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="509">
+                                    <rect key="frame" x="344" y="337" width="29" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="510">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="511">
+                                    <rect key="frame" x="344" y="309" width="29" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="512">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="513">
+                                    <rect key="frame" x="115" y="306" width="56" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="50.0" placeholderString="50.0" drawsBackground="YES" id="514">
+                                        <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="515">
+                                            <nil key="negativeInfinitySymbol"/>
+                                            <nil key="positiveInfinitySymbol"/>
+                                            <real key="minimum" value="0.0"/>
+                                            <real key="maximum" value="1000"/>
+                                        </numberFormatter>
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <action selector="changeParticles:" target="450" id="540"/>
+                                    </connections>
+                                </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="518">
+                                    <rect key="frame" x="64" y="309" width="46" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Speed:" id="519">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="520">
+                                    <rect key="frame" x="378" y="307" width="111" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="111" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="523">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" title="Accel X:" stringValue="0.0" placeholderString="0.0" id="521">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" negativeFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="524">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="-500"/>
+                                                    <real key="maximum" value="500"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="1" title="Accel Y:" stringValue="0.0" placeholderString="0.0" id="522">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="525">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="-500"/>
+                                                    <real key="maximum" value="500"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeParticles:" target="450" id="542"/>
+                                    </connections>
+                                </form>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="526">
+                                    <rect key="frame" x="16" y="282" width="107" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandParticles" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="527">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="528">
+                                    <rect key="frame" x="127" y="282" width="92" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandSpeed" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="529">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="530">
+                                    <rect key="frame" x="236" y="282" width="105" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandLifetime" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="531">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="532">
+                                    <rect key="frame" x="404" y="282" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandAccel" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="533">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="534">
+                                    <rect key="frame" x="14" y="273" width="479" height="5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                </box>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="543">
+                                    <rect key="frame" x="58" y="215" width="102" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="102" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="546">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" title="Begin:" stringValue="1.0" placeholderString="1.0" id="544">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="547">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="5"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="1" title="End:" stringValue="1.0" placeholderString="1.0" id="545">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="677">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="5"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeParticles:" target="450" id="643"/>
+                                    </connections>
+                                </form>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="548">
+                                    <rect key="frame" x="15" y="247" width="38" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Size" id="549">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="550">
+                                    <rect key="frame" x="233" y="215" width="116" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="116" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="553">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Begin:" stringValue="0.0" placeholderString="0.0" id="551">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="556">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="-360"/>
+                                                    <real key="maximum" value="360"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="End:" stringValue="0.0" placeholderString="0.0" id="552">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" negativeFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="557">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="-360"/>
+                                                    <real key="maximum" value="360"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeParticles:" target="450" id="644"/>
+                                    </connections>
+                                </form>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="554">
+                                    <rect key="frame" x="176" y="247" width="57" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Rotation" id="555">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="558">
+                                    <rect key="frame" x="354" y="247" width="41" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="deg/s" id="559">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="560">
+                                    <rect key="frame" x="354" y="217" width="41" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="deg/s" id="561">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="562">
+                                    <rect key="frame" x="63" y="191" width="99" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandParSize" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="563">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="564">
+                                    <rect key="frame" x="276" y="191" width="75" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandRot" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="565">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="566">
+                                    <rect key="frame" x="14" y="182" width="475" height="5"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                </box>
+                                <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="597">
+                                    <rect key="frame" x="79" y="30" width="169" height="114"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="169" height="27"/>
+                                    <size key="intercellSpacing" width="0.0" height="2"/>
+                                    <sliderCell key="prototype" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="602">
+                                        <font key="font" size="12" name="Helvetica"/>
+                                    </sliderCell>
+                                    <cells>
+                                        <column>
+                                            <sliderCell controlSize="small" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="594">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                            <sliderCell controlSize="small" continuous="YES" state="on" alignment="left" tag="1" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="590">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                            <sliderCell controlSize="small" continuous="YES" alignment="left" tag="2" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="592">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                            <sliderCell controlSize="small" continuous="YES" state="on" alignment="left" tag="3" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="596">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeColorFloat:" target="450" id="774"/>
+                                    </connections>
+                                </matrix>
+                                <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="613">
+                                    <rect key="frame" x="320" y="31" width="169" height="114"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="169" height="27"/>
+                                    <size key="intercellSpacing" width="0.0" height="2"/>
+                                    <sliderCell key="prototype" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="622">
+                                        <font key="font" size="12" name="Helvetica"/>
+                                    </sliderCell>
+                                    <cells>
+                                        <column>
+                                            <sliderCell controlSize="small" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="626">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                            <sliderCell controlSize="small" continuous="YES" state="on" alignment="left" tag="1" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="625">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                            <sliderCell controlSize="small" continuous="YES" state="on" alignment="left" tag="2" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="624">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                            <sliderCell controlSize="small" continuous="YES" state="on" alignment="left" tag="3" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="623">
+                                                <font key="font" metaFont="smallSystem"/>
+                                            </sliderCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeColorFloat:" target="450" id="776"/>
+                                    </connections>
+                                </matrix>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="611">
+                                    <rect key="frame" x="23" y="159" width="72" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Start Color" id="612">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="627">
+                                    <rect key="frame" x="250" y="159" width="72" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="End Color" id="628">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="629">
+                                    <rect key="frame" x="100" y="20" width="117" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandStartColor" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="630">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="631">
+                                    <rect key="frame" x="343" y="20" width="117" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" title="RandEndColor" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="632">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="752">
+                                    <rect key="frame" x="14" y="39" width="56" height="112"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="56" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="755">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" title="R" stringValue="1.00" id="753">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" numberStyle="decimal" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="764">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="1" title="G" stringValue="1.00" id="754">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="765">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="2" title="B" stringValue="1.00" id="756">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="766">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="3" title="A" stringValue="1.00" id="757">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="767">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeColorSlider:" target="450" id="773"/>
+                                    </connections>
+                                </form>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="758">
+                                    <rect key="frame" x="256" y="39" width="56" height="112"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="56" height="22"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="761">
+                                        <font key="font" metaFont="system"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" title="R" stringValue="1.00" id="759">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="768">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="1" title="G" stringValue="1.00" id="760">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="769">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="2" title="B" stringValue="1.00" id="762">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="770">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="justified" tag="3" title="A" stringValue="1.00" id="763">
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.00" negativeFormat="0.00" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="2" maximumFractionDigits="2" id="771">
+                                                    <nil key="negativeInfinitySymbol"/>
+                                                    <nil key="positiveInfinitySymbol"/>
+                                                    <real key="minimum" value="0.0"/>
+                                                    <real key="maximum" value="1"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="system"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <action selector="changeColorSlider:" target="450" id="775"/>
+                                    </connections>
+                                </form>
+                            </subviews>
+                        </view>
+                    </box>
+                    <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="496">
+                        <rect key="frame" x="809" y="510" width="503" height="5"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
+                    <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="637">
+                        <rect key="frame" x="1052" y="104" width="127" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="SelectAllRandom" bezelStyle="regularSquare" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="638">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="randAll:" target="450" id="651"/>
+                        </connections>
+                    </button>
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="640">
+                        <rect key="frame" x="937" y="95" width="115" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Randomize!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="641">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="randomize:" target="450" id="682"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+        </window>
+        <customObject id="420" customClass="NSFontManager"/>
+        <colorWell id="699" userLabel="Color Well" customClass="colorWellController">
+            <rect key="frame" x="0.0" y="0.0" width="44" height="23"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <action selector="colorChanged:" target="450" id="703"/>
+            </connections>
+        </colorWell>
+    </objects>
+</document>

@@ -1,0 +1,383 @@
+//
+//  TextureManager.m
+//  LocoMotives
+//
+//  Created by Brandon Mantzey on 11/4/08.
+//  Copyright 2008 Stratogon. All rights reserved.
+//
+
+#import "TextureManager.h"
+
+@interface TextureManager (Private)
+
+-(int) LoadTexturePrivate:(NSString*)fileName
+						 :(GLuint)glIndex
+						 :(BOOL)alpha;
+
+@end
+
+@implementation TextureManager (Private)
+
+-(int) LoadTexturePrivate:(NSString*)fileName
+						 :(GLuint)glIndex
+						 :(BOOL)alpha
+{
+	CGImageRef newImage;
+	CGContextRef imageContext;
+	GLubyte *imageData;
+	size_t width, height;
+	TextureObject *newTexture;
+	
+	// Creates a Core Graphics image from an image file
+	// TODO: Fix this texture loading function.  Shouldn't take too much, most of the code looks the same.  Just need to find a
+	// UIImage equivalent.
+	//newImage = [UIImage imageNamed:fileName].CGImage;
+	
+	// Get the width and height of the image
+	width = CGImageGetWidth(newImage);
+	height = CGImageGetHeight(newImage);
+	// Texture dimensions must be a power of 2. If you write an application that allows users to supply an image,
+	// you'll want to add code that checks the dimensions and takes appropriate action if they are not a power of 2.
+	float wLog = log2(width);
+	wLog = wLog - (int)wLog;
+	float hLog = log2(height);
+	hLog = hLog - (int)wLog;
+	if(!(hLog || wLog))
+		return ERR_NON_POW2;
+	
+	if(newImage)
+	{
+		imageData = (GLubyte *)malloc(width * height *4);
+		memset(imageData, 0, sizeof(imageData));
+		unsigned int bytes = width*4*height;
+		memoryUsed += bytes;
+		if(memoryUsed > TEX_MEMORY_MAX)
+		{
+			memoryUsed -= width*4*height;
+			free(imageData);
+			return ERR_LOW_MEMORY;
+		}
+		
+		// Note: If this does not load the image, it may be because of the pixel format.
+		imageContext = CGBitmapContextCreate(imageData, width, height, 8, width * 4, 
+											 CGImageGetColorSpace(newImage), kCGImageAlphaPremultipliedLast);
+		
+		CGContextDrawImage(imageContext, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), newImage);
+		CGContextRelease(imageContext);
+		
+		// Here is where we alpha out the passed in key.
+		// The image data is in the byte* imageData
+		
+		if(alpha)
+		{
+			for(int i=0;i<bytes-4;i+=4)
+			{
+				if( imageData[i+3] != 255 )
+					continue;
+				if(	imageData[i]	==	alphaOutColor[0]*255	&&
+					imageData[i+1]	==	alphaOutColor[1]*255	&&
+					imageData[i+2]	==	alphaOutColor[2]*255	)
+				{
+					imageData[i+3] = 0;
+				}
+			}
+		}
+		
+		
+		// Use OpenGL ES to generate a name for the texture.
+		// Bind the texture name.
+		glBindTexture(GL_TEXTURE_2D, glIndex);
+		// Specify a 2D texture image, providing a pointer to the image data in memory.
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, 
+					 GL_UNSIGNED_BYTE, imageData);
+		
+		free(imageData);
+		imageData = 0;
+	}
+	else
+	{
+		return ERR_NOT_FOUND;
+	}
+	
+	newTexture = [[TextureObject alloc] initWithData:width :height :glIndex];
+	[TextureObjects setObject:newTexture forKey:fileName];
+	[newTexture release];
+	
+	return ERR_NONE;
+}	
+
+@end
+
+#pragma mark TextureManager
+
+@implementation TextureManager
+
+@synthesize	section;
+@synthesize xScale;
+@synthesize yScale;
+@synthesize xScalePoint;
+@synthesize yScalePoint;
+@synthesize xRot;
+@synthesize yRot;
+@synthesize rotAngle;
+@synthesize xPos;
+@synthesize yPos;
+
+static TextureManager* sharedSingleton = 0;
+
++(TextureManager*)getInstance
+{
+	if(!sharedSingleton)
+	{
+		sharedSingleton = [[TextureManager alloc] init];
+		return sharedSingleton;
+	}
+	else
+	{
+		[sharedSingleton retain];
+		return sharedSingleton;
+	}
+}
+
++(id)alloc
+{
+	NSAssert(sharedSingleton == nil, @"Attempted to allocate a second instance of a singleton.");
+	sharedSingleton = [super alloc];
+	return sharedSingleton;
+}
+
+-(id)init
+{
+	self = [super init];
+	if(self)
+	{
+		TextureObjects = [[NSMutableDictionary alloc] init];
+		memoryUsed = 0;
+		xScale = 1.0f;
+		yScale = 1.0f;
+		xRot = 0.0f;
+		yRot = 0.0f;
+		rotAngle = 0.0f;
+		xPos = 0.0f;
+		yPos = 0.0f;
+		color[0] = 1.0f; color[1] = 1.0f; color[2] = 1.0f; color[3] = 1.0f;
+		memset(&section, 0, sizeof(section));
+	}
+	return self;
+}
+
+-(int) LoadTexture:(NSString*)fileName
+{
+	TextureObject *newTexture = [TextureObjects objectForKey:fileName];
+	if(newTexture)
+	{
+		newTexture.m_nRetCount++;
+		return ERR_ALREADY_LOADED;
+	}
+	GLuint glIndex;
+	glGenTextures(1, &glIndex);
+	
+	int retVal = [self LoadTexturePrivate:fileName :glIndex :NO];
+	if(retVal != ERR_NONE)
+	{
+		glDeleteBuffers(1, &glIndex);
+	}
+	return retVal;
+}
+-(int) LoadTexture:(NSString*)fileName
+				  :(M3DVector3f)colorKey
+{
+	TextureObject *newTexture = [TextureObjects objectForKey:fileName];
+	if(newTexture)
+	{
+		newTexture.m_nRetCount++;
+		return ERR_ALREADY_LOADED;
+	}
+	GLuint glIndex;
+	glGenTextures(1, &glIndex);
+	
+	[self SetAlphaColor:colorKey];	
+	int retVal = [self LoadTexturePrivate:fileName :glIndex :YES];
+	if(retVal != ERR_NONE)
+	{
+		glDeleteBuffers(1, &glIndex);
+	}
+	return retVal;
+}
+
+-(GLuint) GetTexID:(NSString*)texKey
+{
+	TextureObject* texObject = [TextureObjects objectForKey:texKey];
+	if(texObject)
+		return texObject.m_glIndex;
+	return 0;
+}
+
+-(BOOL) ReleaseTexture:(NSString*)iden
+{
+	TextureObject *oldTexture = [TextureObjects objectForKey:iden];
+	if(!oldTexture)
+		return NO;
+	
+	memoryUsed -= oldTexture.m_nHeight*4*oldTexture.m_nWidth;
+	oldTexture.m_nRetCount--;
+	
+	if(oldTexture.m_nRetCount <= 0)
+	{
+		[TextureObjects removeObjectForKey:iden];
+		return YES;
+	}
+	else 
+		return NO;
+}
+-(size_t) GetTextureWidth:(NSString*)iden
+{
+	TextureObject *temp = [TextureObjects objectForKey:iden];
+	return temp.m_nWidth;
+}
+-(size_t) GetTextureHeight:(NSString*)iden
+{
+	TextureObject* temp = [TextureObjects objectForKey:iden];
+	return temp.m_nHeight;
+}
+-(void) SetColor:(M3DVector4f)newColor
+{
+	memcpy(color, newColor, sizeof(M3DVector4f));
+}
+-(void) SetAlphaColor:(M3DVector3f)alphaOut
+{
+	memcpy(alphaOutColor, alphaOut, sizeof(M3DVector3f));
+}
+
+-(void)dealloc
+{
+	[TextureObjects removeAllObjects];
+	[TextureObjects dealloc];
+	[super dealloc];
+}
+
+-(TextureObject*) GetTextureObject:(NSString*)iden
+{
+	return [TextureObjects objectForKey:iden];
+}
+
+-(int) Draw:(NSString*)iden
+{
+	TextureObject *drawTexture = [TextureObjects objectForKey:iden];
+	if(!drawTexture)
+		return ERR_NOT_LOADED;
+	
+	// Determine the verts and tex coords
+	// By default, draw the entire texture in its original size at the lower left of the screen
+	if( (section.origin.y == 0.0f && section.origin.x == 0.0f && section.size.width == 0.0f && section.size.height == 0.0f) )
+	{
+		section.size.width = drawTexture.m_nWidth;
+		section.size.height = drawTexture.m_nHeight;
+	}
+	GLfloat verts[8] =
+	{
+		// TODO: Customize this so that it draws to a coordinate system that is centered in the middle of the screen.
+		0.0f,							0.0f,							// lower left
+		section.size.width,				0.0f,							// upper left
+		0.0f,							section.size.height,			// lower right
+		section.size.width,				section.size.height				// upper right
+	};
+	GLfloat texCoords[8] =
+	{
+		section.origin.x/(float)drawTexture.m_nWidth, section.origin.y/(float)drawTexture.m_nHeight,
+		(section.origin.x + section.size.width)/(float)drawTexture.m_nWidth, section.origin.y/(float)drawTexture.m_nHeight,
+		section.origin.x/(float)drawTexture.m_nWidth, (section.origin.y + section.size.height)/(float)drawTexture.m_nHeight,
+		(section.origin.x + section.size.width)/(float)drawTexture.m_nWidth, (section.origin.y + section.size.height)/(float)drawTexture.m_nHeight
+	};
+		
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	
+	glPushMatrix();
+	{
+		//MIKE CAMPBELL CHANGE: old scale location...
+		
+		// Rotate it
+		glTranslatef(xRot, yRot, 0.0f);
+		glRotatef(rotAngle, 0.0f, 0.0f, 1.0f);
+		glTranslatef(-xRot, -yRot, 0.0f);
+		
+		// Translate it
+		glTranslatef(xPos, yPos, 0.0f);
+		
+		//MIKE CAMPBELL CHANGE: Moved glscale call here, seemed to cause some issues with older placement...
+		// Scale it
+		glTranslatef(xScalePoint, yScalePoint, 0.0f);
+		glScalef(xScale, yScale, 1.0f);
+		glTranslatef(-xScalePoint, -yScalePoint, 0.0f);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, (int)nil);
+		/// Apply transformations!
+	//	[transform ApplyActorTransform:NO];
+		glColor4f(color[0], color[1], color[2], color[3]);
+
+		glBindTexture(GL_TEXTURE_2D, (drawTexture.m_glIndex));
+		glVertexPointer(2, GL_FLOAT, 0, verts);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);	
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		
+	} glPopMatrix();	
+	
+	memset(&section, 0.0, sizeof(section));
+	xScale = 1.0f;
+	yScale = 1.0f;
+	xScalePoint = 0.0f;
+	yScalePoint = 0.0f;
+	xRot = 0.0f;
+	yRot = 0.0f;
+	rotAngle = 0.0f;
+	xPos = 0.0f;
+	yPos = 0.0f;
+
+	return ERR_NONE;
+}
+
+@end
+
+#pragma mark TextureObject
+
+@implementation TextureObject
+
+@synthesize m_nWidth;
+@synthesize m_nHeight;
+@synthesize m_nRetCount;
+@synthesize m_glIndex;
+
+-(id)initWithData:(size_t)width :(size_t)height: (GLuint)glIndex
+{
+	[self init];
+	m_nWidth = width;
+	m_nHeight = height;
+	m_glIndex = glIndex;
+	return self;
+}
+-(id)init
+{
+	self = [super init];
+	// TODO:  Put the correct data in this "structure"
+	if(self)
+	{
+		m_nRetCount = 1;
+		m_nWidth = 0;
+		m_nHeight = 0;
+		m_glIndex = 0;
+	}
+	return self;
+}
+
+-(void)dealloc
+{
+	[super dealloc];
+}
+@end

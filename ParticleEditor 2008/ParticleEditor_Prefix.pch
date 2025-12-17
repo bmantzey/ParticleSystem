@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'ParticleEditor' target in the 'ParticleEditor' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
