@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C461CFBC2EF4B8D800153CAE /* EmitterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CFBB2EF4B8D800153CAE /* EmitterConfig.swift */; };
+		C461CFC02EF4C22A00153CAE /* ParticleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CFBF2EF4C22A00153CAE /* ParticleConfig.swift */; };
 		C48EDC3F2EEA3563008DC7F6 /* ParticleEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC3E2EEA3563008DC7F6 /* ParticleEditorApp.swift */; };
 		C48EDC412EEA3563008DC7F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC402EEA3563008DC7F6 /* ContentView.swift */; };
 		C48EDC6E2EEA36A8008DC7F6 /* ParticleShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C48EDC6D2EEA36A8008DC7F6 /* ParticleShaders.metal */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C461CFBB2EF4B8D800153CAE /* EmitterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterConfig.swift; sourceTree = "<group>"; };
+		C461CFBF2EF4C22A00153CAE /* ParticleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleConfig.swift; sourceTree = "<group>"; };
 		C48EDC3B2EEA3563008DC7F6 /* ParticleEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParticleEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48EDC3E2EEA3563008DC7F6 /* ParticleEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEditorApp.swift; sourceTree = "<group>"; };
 		C48EDC402EEA3563008DC7F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C461CFBA2EF4B8C300153CAE /* Emitter */ = {
+			isa = PBXGroup;
+			children = (
+				C48EDC752EEA379E008DC7F6 /* Emitter.swift */,
+				C461CFBB2EF4B8D800153CAE /* EmitterConfig.swift */,
+			);
+			path = Emitter;
+			sourceTree = "<group>";
+		};
 		C48EDC322EEA3563008DC7F6 = {
 			isa = PBXGroup;
 			children = (
@@ -154,8 +167,8 @@
 		C48EDC682EEA35CB008DC7F6 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				C461CFBA2EF4B8C300153CAE /* Emitter */,
 				C4E1A0EB2EF2002400645D36 /* Particles */,
-				C48EDC752EEA379E008DC7F6 /* Emitter.swift */,
 				C48EDC792EEA37B8008DC7F6 /* ParticleSystem.swift */,
 			);
 			path = Engine;
@@ -199,6 +212,7 @@
 			children = (
 				C48EDC732EEA3744008DC7F6 /* Particle.swift */,
 				C48EDC772EEA37AF008DC7F6 /* ParticleController.swift */,
+				C461CFBF2EF4C22A00153CAE /* ParticleConfig.swift */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -354,6 +368,8 @@
 				C48EDC7C2EEA4036008DC7F6 /* MetalView.swift in Sources */,
 				C48EDC742EEA3744008DC7F6 /* Particle.swift in Sources */,
 				C48EDC802EEB77BD008DC7F6 /* Shaders.metal in Sources */,
+				C461CFBC2EF4B8D800153CAE /* EmitterConfig.swift in Sources */,
+				C461CFC02EF4C22A00153CAE /* ParticleConfig.swift in Sources */,
 				C48EDC7A2EEA37B8008DC7F6 /* ParticleSystem.swift in Sources */,
 				C48EDC782EEA37B0008DC7F6 /* ParticleController.swift in Sources */,
 				C48EDC3F2EEA3563008DC7F6 /* ParticleEditorApp.swift in Sources */,

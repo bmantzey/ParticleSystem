@@ -95,7 +95,7 @@ final class Renderer: NSObject, MTKViewDelegate {
         )!
 
         self.instanceBuffer = device.makeBuffer(
-            length: MemoryLayout<InstanceData>.stride * emitter.maxParticles,
+            length: MemoryLayout<InstanceData>.stride * emitter.userMaxParticles,
             options: .storageModeShared
         )!
 
@@ -175,7 +175,7 @@ final class Renderer: NSObject, MTKViewDelegate {
         let instanceCount = instances.count
         if instanceCount > 0 {
             let ptr = instanceBuffer.contents()
-                .bindMemory(to: InstanceData.self, capacity: emitter.maxParticles)
+                .bindMemory(to: InstanceData.self, capacity: emitter.userMaxParticles)
             ptr.update(from: instances, count: instanceCount)
         }
 

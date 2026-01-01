@@ -5,6 +5,7 @@
 //  Created by Brandon Mantzey on 12/16/25.
 //
 //  https://bmantzey.dev
+//
 
 import simd
 
@@ -24,7 +25,7 @@ final class ParticleController {
         
         // Remove dead particles
         particles.removeAll { particle in
-            particle.age >= particle.lifetime
+            particle.age >= particle.lifespan
         }
     }
     
